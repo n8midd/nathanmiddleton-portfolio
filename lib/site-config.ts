@@ -28,7 +28,7 @@ export const features: SiteFeature[] = [
     label: "Command Center",
     description: "Interactive QA dashboard landing page with live-style metrics.",
     group: "Lab",
-    status: "planned",
+    status: "live",
   },
   {
     id: 2,
