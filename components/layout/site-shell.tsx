@@ -42,6 +42,7 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
                   <Link
                     href={feature.href}
                     onClick={onNavigate}
+                    aria-current={isActive ? "page" : undefined}
                     className={cn(
                       "flex items-center justify-between rounded-md px-2 py-1.5 text-sm transition-colors",
                       isActive

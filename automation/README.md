@@ -1,13 +1,39 @@
 # Playwright Automation Framework
 
-This directory will host the real Playwright framework demo referenced from the **Framework Demo** section of the Quality Engineering Lab.
+The live Playwright framework for this site lives in [`tests/e2e/`](../tests/e2e/) — not in this folder. This directory documents the intended structure for the **Framework Demo** page and future expansion.
 
-Planned structure:
+## Current structure
 
-- `tests/` — UI, API, and integration specs
-- `pages/` — Page Object Model implementations
-- `fixtures/` — Shared test fixtures and setup
-- `helpers/` — Utilities, logging, and retry logic
-- `.github/workflows/` — CI integration for parallel runs
+```
+tests/e2e/
+├── fixtures/
+│   └── test.fixture.ts       # Custom fixture with page object instances
+├── pages/
+│   ├── base.page.ts          # goto, title, url helpers
+│   ├── site-shell.page.ts    # Header, sidebar, mobile nav, footer
+│   └── command-center.page.ts
+└── specs/
+    ├── smoke.spec.ts         # @smoke — fast CI checks
+    └── regression/
+        └── command-center.regression.spec.ts  # @regression — full feature coverage
+```
 
-The website will link here and explain each folder with expandable documentation.
+## Running tests
+
+```bash
+npm run test:e2e              # Full suite (smoke + regression)
+npm run test:e2e:smoke        # Smoke only
+npm run test:e2e:regression   # Regression only
+```
+
+## Patterns
+
+- **Page Object Model** — locators and assertions live in `pages/`; specs call page object methods only.
+- **Shared test data** — dashboard values come from [`lib/data/command-center.ts`](../lib/data/command-center.ts) so UI and tests stay in sync.
+- **Custom fixture** — `test.fixture.ts` injects `shell` and `commandCenter` page objects into every spec.
+
+## Planned additions (Framework Demo page)
+
+- `helpers/` — logging, retry utilities
+- Additional page objects as each lab feature goes live
+- Parallel CI shards for regression suites
