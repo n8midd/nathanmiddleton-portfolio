@@ -64,7 +64,7 @@ export const features: SiteFeature[] = [
     label: "Bug Hunt Game",
     description: "Find intentional bugs in a fake shopping cart application.",
     group: "Lab",
-    status: "planned",
+    status: "live",
   },
   {
     id: 6,

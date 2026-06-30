@@ -40,4 +40,9 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     await architecture.open();
     await architecture.expectHeader();
   });
+
+  test("bug hunt page loads", async ({ bugHunt }) => {
+    await bugHunt.open();
+    await bugHunt.expectHeader();
+  });
 });

@@ -12,12 +12,14 @@ tests/e2e/
 │   ├── base.page.ts          # goto, title, url helpers
 │   ├── site-shell.page.ts    # Header, sidebar, mobile nav, footer
 │   ├── command-center.page.ts
-│   └── architecture.page.ts
+│   ├── architecture.page.ts
+│   └── bug-hunt.page.ts
 └── specs/
     ├── smoke.spec.ts         # @smoke — fast CI checks
     └── regression/
         ├── command-center.regression.spec.ts
-        └── architecture.regression.spec.ts
+        ├── architecture.regression.spec.ts
+        └── bug-hunt.regression.spec.ts
 ```
 
 ## Running tests
@@ -31,8 +33,8 @@ npm run test:e2e:regression   # Regression only
 ## Patterns
 
 - **Page Object Model** — locators and assertions live in `pages/`; specs call page object methods only.
-- **Shared test data** — dashboard values come from [`lib/data/command-center.ts`](../lib/data/command-center.ts) so UI and tests stay in sync.
-- **Custom fixture** — `test.fixture.ts` injects `shell` and `commandCenter` page objects into every spec.
+- **Shared test data** — UI and tests import from `lib/data/` (e.g. command-center, architecture, bug-hunt).
+- **Custom fixture** — `test.fixture.ts` injects page objects into every spec.
 
 ## Planned additions (Framework Demo page)
 
