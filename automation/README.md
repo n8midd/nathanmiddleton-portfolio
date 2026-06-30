@@ -11,11 +11,13 @@ tests/e2e/
 ├── pages/
 │   ├── base.page.ts          # goto, title, url helpers
 │   ├── site-shell.page.ts    # Header, sidebar, mobile nav, footer
-│   └── command-center.page.ts
+│   ├── command-center.page.ts
+│   └── architecture.page.ts
 └── specs/
     ├── smoke.spec.ts         # @smoke — fast CI checks
     └── regression/
-        └── command-center.regression.spec.ts  # @regression — full feature coverage
+        ├── command-center.regression.spec.ts
+        └── architecture.regression.spec.ts
 ```
 
 ## Running tests
