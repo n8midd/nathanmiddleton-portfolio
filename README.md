@@ -48,7 +48,7 @@ automation/       Framework Demo documentation (live tests in tests/e2e/)
 | **2** | Command Center landing, Contact | Command Center live; Contact planned |
 | **3** | Testing Playground, Bug Hunt Game | Planned |
 | **4** | Test Case Builder, Live API Explorer | Planned |
-| **5** | Framework Architecture, CI/CD Pipeline Visualizer | Planned |
+| **5** | Framework Architecture, CI/CD Pipeline Visualizer | Architecture live; Pipeline planned |
 | **6** | Articles, QA Leadership, Lessons Learned | Planned |
 | **7** | Interactive Resume, Technical Stack | Planned |
 | **8** | Metrics Dashboard, Interview Prep | Planned |

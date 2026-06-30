@@ -35,4 +35,9 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
       page.getByRole("heading", { name: "Why 90% Automation Coverage is a Bad Goal" }),
     ).toBeVisible();
   });
+
+  test("architecture page loads", async ({ architecture }) => {
+    await architecture.open();
+    await architecture.expectHeader();
+  });
 });

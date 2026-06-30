@@ -37,7 +37,7 @@ export const features: SiteFeature[] = [
     label: "Framework Architecture",
     description: "Diagrams explaining hybrid automation frameworks and reporting pipelines.",
     group: "Lab",
-    status: "planned",
+    status: "live",
   },
   {
     id: 3,
