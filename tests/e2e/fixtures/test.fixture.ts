@@ -1,5 +1,6 @@
 import { test as base } from "@playwright/test";
 import { ArchitecturePage } from "../pages/architecture.page";
+import { BugHuntPage } from "../pages/bug-hunt.page";
 import { CommandCenterPage } from "../pages/command-center.page";
 import { SiteShellPage } from "../pages/site-shell.page";
 
@@ -7,6 +8,7 @@ export const test = base.extend<{
   shell: SiteShellPage;
   commandCenter: CommandCenterPage;
   architecture: ArchitecturePage;
+  bugHunt: BugHuntPage;
 }>({
   shell: async ({ page }, use) => {
     await use(new SiteShellPage(page));
@@ -16,6 +18,9 @@ export const test = base.extend<{
   },
   architecture: async ({ page }, use) => {
     await use(new ArchitecturePage(page));
+  },
+  bugHunt: async ({ page }, use) => {
+    await use(new BugHuntPage(page));
   },
 });
 
