@@ -109,7 +109,7 @@ export const features: SiteFeature[] = [
     label: "Testing Playground",
     description: "Demo pages for login, forms, shadow DOM, modals, and more.",
     group: "Lab",
-    status: "planned",
+    status: "live",
   },
   {
     id: 11,
@@ -223,19 +223,4 @@ export const plannedArticles = [
   "Your Automation ROI Calculator Is Probably Wrong",
 ] as const;
 
-export const playgroundDemos = [
-  { slug: "login", label: "Login", description: "Authentication forms and validation." },
-  { slug: "forms", label: "Forms", description: "Input types, validation, and submission." },
-  { slug: "dropdowns", label: "Dropdowns", description: "Select menus and combobox patterns." },
-  { slug: "alerts", label: "Alerts", description: "Dialogs, toasts, and confirmations." },
-  { slug: "shadow-dom", label: "Shadow DOM", description: "Encapsulated web components." },
-  { slug: "infinite-scroll", label: "Infinite Scroll", description: "Lazy-loaded content lists." },
-  { slug: "tables", label: "Tables", description: "Sortable, filterable data grids." },
-  { slug: "modals", label: "Modals", description: "Overlay dialogs and focus traps." },
-  { slug: "uploads", label: "Uploads", description: "File input and drag-and-drop." },
-  { slug: "downloads", label: "Downloads", description: "File download triggers." },
-  { slug: "drag-and-drop", label: "Drag & Drop", description: "Reorderable lists and drop zones." },
-  { slug: "iframes", label: "iFrames", description: "Embedded content and cross-frame access." },
-  { slug: "api-calls", label: "API Calls", description: "Async data fetching patterns." },
-  { slug: "dynamic-ids", label: "Dynamic IDs", description: "Unstable selectors and strategies." },
-] as const;
+export { playgroundDemos } from "@/lib/data/playground";
