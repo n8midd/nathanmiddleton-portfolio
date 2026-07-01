@@ -1,0 +1,104 @@
+---
+title: "Mentoring"
+summary: "Growing SDETs through deliberate practice, not shadowing forever."
+categoryId: people
+practices:
+  - "Pair on real triage and design work, not synthetic homework only"
+  - "Give mentees ownership of a vertical slice with guardrails"
+  - "Review tests for intent and maintainability, not style nitpicks"
+  - "Create safe space to ask why before how"
+pitfalls:
+  - "Mentors who answer every question—mentees never build judgment"
+  - "Throwing juniors at production suites without teaching failure analysis"
+  - "Measuring mentorship success by output volume instead of growth"
+readingTime: "8 min"
+status: published
+---
+
+Mentoring in quality engineering is not handing someone your old test scripts and hoping they figure it out.
+
+It is deliberately transferring judgment: how to prioritize, how to debug, how to push back on bad requirements, and how to write automation that survives the next refactor.
+
+The teams I have seen grow fastest treat mentoring as part of the job—not a volunteer activity squeezed in when deadlines allow.
+
+---
+
+## Mentoring Is Not Shadowing Forever
+
+Shadowing has a shelf life. After a few weeks, mentees need reps with real accountability.
+
+I structure early mentorship in phases:
+
+**Observe and narrate:** Mentor explains decisions aloud during triage, PR reviews, and planning.
+
+**Co-own:** Mentee leads a task; mentor stays available but does not take the keyboard back at the first error.
+
+**Own with review:** Mentee delivers a feature area—fixtures, page objects, CI job—with scheduled review checkpoints.
+
+**Teach back:** Mentee documents a pattern or runs a lunch-and-learn. Teaching solidifies learning.
+
+If someone is still shadowing after six months, the mentorship design is broken—not the person.
+
+---
+
+## What to Teach First
+
+Junior SDETs often arrive with strong tool syntax but weak failure analysis. I prioritize:
+
+1. Reading traces, logs, and network tabs before changing locators
+2. Mapping tests to user journeys and business risk
+3. Writing stable selectors and waiting strategies
+4. Opening PRs that explain *what* broke and *why* the fix works
+
+Framework trivia can wait. Judgment under uncertainty cannot.
+
+---
+
+## Feedback That Actually Helps
+
+Generic feedback ("make this cleaner") wastes cycles. I use:
+
+- **Intent questions:** "What behavior are you proving?"
+- **Future maintainer test:** "If this UI changes tomorrow, what breaks first?"
+- **Scope checks:** "Could a unit or API test cover this faster?"
+
+Praise specific decisions, not effort alone. "Good call waiting for network idle here—here is why that mattered" beats "nice work."
+
+---
+
+## Mentoring Across Levels
+
+Mid-level engineers need different support: influencing without authority, estimating automation ROI, and navigating conflict with product timelines.
+
+Senior engineers benefit from mentorship too—executive communication, hiring participation, and org-level strategy. Leadership mentoring is often neglected because seniors are assumed to "already know."
+
+Create peer mentorship pairs across teams. Some of the best growth I have seen came from SDETs in different product lines reviewing each other's frameworks.
+
+---
+
+## Where This Goes Wrong
+
+**Hero mentors:** One senior carries all teaching load and becomes a bottleneck.
+
+**Sink or swim:** New hires thrown into a 4,000-test repo with no map. They learn bad habits or burn out.
+
+**No time protected:** Mentorship scheduled "when we have bandwidth"—which never comes during crunch.
+
+**Copy-paste culture:** Mentees mimic mentor's code without understanding principles. Everything looks the same and breaks the same way.
+
+**Gatekeeping:** Mentors who hoard interesting work and assign only maintenance. Growth stalls; retention suffers.
+
+---
+
+## Measuring Mentorship
+
+Output metrics alone mislead. I look for:
+
+- Decreasing time-to-diagnosis for mentee-owned failures
+- Increasing quality of PR descriptions and test design docs
+- Mentees initiating improvements without being asked
+- Willingness to challenge bad ideas respectfully in meetings
+
+Mentoring succeeds when your mentee no longer needs you in the room—and still invites you because collaboration is valuable.
+
+That is the bar worth building toward.

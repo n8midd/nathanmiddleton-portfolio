@@ -92,4 +92,10 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     await stack.clickTool("playwright");
     await stack.expectToolDetail("playwright", "auto-waiting");
   });
+
+  test("leadership page loads hiring philosophy essay", async ({ leadership }) => {
+    await leadership.open();
+    await leadership.clickTopic("hiring-philosophy");
+    await leadership.expectTopicDetail("hiring-philosophy", "What Resume Keywords Miss");
+  });
 });

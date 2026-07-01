@@ -91,7 +91,7 @@ export const features: SiteFeature[] = [
     label: "QA Leadership",
     description: "Hiring philosophy, mentoring, test strategy, and executive reporting.",
     group: "Leadership",
-    status: "planned",
+    status: "live",
   },
   {
     id: 9,

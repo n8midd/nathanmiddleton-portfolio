@@ -1,0 +1,107 @@
+---
+title: "Hiring Philosophy"
+summary: "What I look for in SDETs—and what resume keywords miss."
+categoryId: people
+practices:
+  - "Assess system design and debugging, not trivia"
+  - "Use practical exercises that mirror real triage and test design work"
+  - "Evaluate collaboration signals, not just coding speed"
+  - "Hire for ownership of quality outcomes, not ticket throughput"
+pitfalls:
+  - "Hiring coders who won't triage failures or talk to developers"
+  - "Over-weighting framework experience while ignoring product thinking"
+  - "Panels that test memorization instead of how candidates reason under ambiguity"
+readingTime: "9 min"
+status: published
+---
+
+The best SDET hire I ever made did not have Playwright on their resume.
+
+They had a strong debugging story, asked sharp questions about release risk, and walked through how they would test a checkout flow without reaching for buzzwords. That interview told me more than any certification ever could.
+
+Hiring for quality engineering is not hiring for a tool list. It is hiring for people who can reduce release risk, improve developer feedback loops, and build automation that earns trust over time.
+
+---
+
+## What Resume Keywords Miss
+
+Resumes optimize for keywords: Selenium, Cypress, Playwright, CI/CD, BDD. Keywords help recruiters filter. They rarely help you identify leaders who will stabilize a flaky suite or push back on low-value automation.
+
+When I review candidates, I look past the stack and ask:
+
+- Can they explain *why* a test failed, not just that it failed?
+- Do they design tests around business risk or around UI convenience?
+- Can they communicate tradeoffs to developers and product without becoming a gatekeeper?
+- Have they improved a process, not just added tests?
+
+Tool experience matters—but only as evidence that someone can learn quickly in your environment. The durable skill is judgment.
+
+---
+
+## How I Structure Interviews
+
+I use a layered approach rather than a trivia gauntlet.
+
+**System thinking:** Present a simplified product flow (signup, payment, admin approval). Ask what they would validate at each layer—unit, contract, integration, UI—and what they would *not* automate yet.
+
+**Debugging exercise:** Share a failing test log or trace snippet. Ask them to hypothesize root causes and next steps. Strong candidates ask clarifying questions before blaming the application.
+
+**Collaboration signals:** Role-play a tense standup where a developer says, "QA is blocking the release." Listen for empathy, data, and constructive paths forward.
+
+**Code when it counts:** A short exercise to write a readable test or refactor brittle locators—not leetcode for its own sake.
+
+---
+
+## Signals I Weight Heavily
+
+**Ownership:** Candidates who describe improving frameworks, reducing flake, or teaching teams—not only executing scripts assigned to them.
+
+**Communication:** Quality engineering is a translation job between business risk and engineering work. If someone cannot explain their reasoning clearly, they will struggle at senior levels regardless of coding skill.
+
+**Pragmatism:** The best SDETs know when not to automate. They prioritize stabilization when trust is low. They say no to coverage theater.
+
+**Curiosity:** They ask about deployment frequency, on-call pain, recent production incidents, and how developers experience the pipeline.
+
+---
+
+## Signals I Deprioritize
+
+Perfect whiteboard algorithms unrelated to testing. Memorized definitions of testing types without context. "I only work on UI tests" without interest in the broader quality strategy.
+
+Also: candidates who treat QA as a separate kingdom. Modern quality engineering succeeds when it enables the team, not when it polices the team.
+
+---
+
+## Building a Balanced Team
+
+Hiring philosophy extends beyond individual interviews. Teams need a mix:
+
+- Engineers who love infrastructure, CI, and developer experience
+- Engineers who excel at product-facing exploratory thinking
+- People who can mentor juniors and document patterns
+
+If every hire looks identical on paper, you get identical blind spots. Diversity of background—manual testing roots, dev converts, platform engineers—often produces stronger outcomes than homogeneous "SDET factories."
+
+---
+
+## Where This Goes Wrong
+
+**Keyword hiring:** Job descriptions demand seven tools and five years in each. You attract resume optimizers and repel strong generalists.
+
+**No practical exercise:** Interviews become conversational only. You discover coding gaps after onboarding.
+
+**Ignoring collaboration:** Brilliant automators who alienate developers destroy trust faster than they build coverage.
+
+**Hiring senior titles for junior scope:** A "Senior SDET" who only executes tickets will leave—or become a bottleneck.
+
+**Speed over bar:** Filling headcount to hit a ratio target (1 QA per 5 devs) without defining outcomes. Headcount is not strategy.
+
+---
+
+## The Outcome I Hire For
+
+I want engineers who make releases safer *and* faster—not one at the expense of the other.
+
+When the right person joins, you see it within weeks: fewer mystery failures, clearer quality conversations in planning, developers inviting QA into design discussions instead of avoiding them.
+
+That is what hiring philosophy should optimize for—not the longest tool list on LinkedIn.

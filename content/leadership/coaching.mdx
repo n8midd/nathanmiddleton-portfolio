@@ -1,0 +1,108 @@
+---
+title: "Coaching"
+summary: "Short-cycle feedback that changes behavior in standups, reviews, and incidents."
+categoryId: people
+practices:
+  - "Coach in the moment during real work, not only in quarterly reviews"
+  - "Ask questions before prescribing fixes"
+  - "Focus on one behavior change at a time"
+  - "Celebrate public wins; give hard feedback privately"
+pitfalls:
+  - "Confusing coaching with performance management documentation"
+  - "Correcting symptoms (bad locators) without teaching diagnosis habits"
+  - "Coaching everyone the same way regardless of motivation and experience"
+readingTime: "8 min"
+status: published
+---
+
+Mentoring builds capability over months. Coaching adjusts behavior this week.
+
+In quality engineering, coaching shows up everywhere: a standup where someone blames "flaky automation," a PR review that adds ten more sleeps, a retro where the team vows to "add more tests" without addressing root cause.
+
+Coaching is the art of helping someone see a better move in real time—without taking over their job.
+
+---
+
+## Coaching vs. Managing vs. Mentoring
+
+**Managing** sets priorities and removes blockers. **Mentoring** develops long-term skill. **Coaching** sharpens specific behaviors in specific contexts.
+
+You can manage without coaching (tasks get done, growth stalls). You can coach without formal authority (peers coach peers effectively).
+
+I coach when I notice a repeatable pattern: skipping reproduction steps, over-automating, avoiding difficult conversations with dev leads, or treating green builds as proof of quality.
+
+---
+
+## The Question-First Habit
+
+The fastest way to shut down learning is jumping in with the answer.
+
+When an engineer says, "The test is flaky," I might ask:
+
+- What changed since it last passed reliably?
+- Is it failing in one environment or all?
+- Does it fail on retry?
+- What would convince a developer this is an app bug?
+
+Questions build diagnostic muscle. Answers provide one fix for one day.
+
+---
+
+## Coaching Moments That Matter
+
+**In triage:** Walk through trace reading once, then let them lead the next failure while you ask guiding questions.
+
+**In design reviews:** Challenge scope—"What risk does this test reduce?"—before discussing implementation.
+
+**In incidents:** Coach communication: facts, customer impact, next steps—not blame language.
+
+**In 1:1s:** Pick one behavior theme (e.g., proactive status updates) for two weeks instead of ten vague improvement goals.
+
+---
+
+## Feedback Timing and Tone
+
+Public correction humiliates; public recognition motivates. Hard conversations about quality gaps belong in private 1:1s with specific examples.
+
+Coaching feedback should be:
+
+- **Timely** — close to the event
+- **Specific** — reference the test, PR, or meeting
+- **Actionable** — one next behavior to try
+- **Supportive** — assume good intent
+
+---
+
+## Coaching Under Pressure
+
+During release crunches, coaching often disappears. That is when bad habits cement: disabling tests, merging with red builds, skipping root cause.
+
+I protect small coaching rituals even in crunch: five-minute post-mortems on failed builds, paired triage on the worst flake, a daily "one thing we learned" Slack note.
+
+Short cycles beat quarterly training when stress is high.
+
+---
+
+## Where This Goes Wrong
+
+**Fixing for them:** Senior takes keyboard every time. Coachee never builds confidence.
+
+**Vague pep talks:** "Be more proactive" without defining what proactive looks like in your org.
+
+**Coaching as punishment:** Feedback only when something breaks. People hide problems.
+
+**One-size-fits-all:** Introverts and extroverts, juniors and mids, need different coaching styles.
+
+**Confusing authority:** Coaching requires trust. If the coachee thinks every session ends in a performance rating, honesty stops.
+
+---
+
+## The Behavior Change Test
+
+Good coaching shows up in changed habits within weeks—not perfect tests, but better instincts.
+
+Ask: **What did this person do differently last sprint that they were not doing before?**
+
+If the answer is nothing, coaching was conversation—not development.
+
+That is the difference between a leader who talks about quality and one who grows it person by person.
