@@ -8,6 +8,7 @@ interface MetricCardProps {
   children?: React.ReactNode;
   className?: string;
   testId?: string;
+  dataMetricLabel?: string;
 }
 
 export function MetricCard({
@@ -17,11 +18,13 @@ export function MetricCard({
   children,
   className,
   testId,
+  dataMetricLabel,
 }: MetricCardProps) {
   return (
     <Card
       className={cn("border-border/60 bg-card/80", className)}
       data-testid={testId}
+      data-metric-label={dataMetricLabel}
       aria-label={label}
     >
       <CardHeader className="pb-2">

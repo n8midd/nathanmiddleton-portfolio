@@ -118,7 +118,7 @@ export const features: SiteFeature[] = [
     label: "Metrics Dashboard",
     description: "Grafana-style automation metrics and execution history.",
     group: "Lab",
-    status: "planned",
+    status: "live",
   },
   {
     id: 12,
