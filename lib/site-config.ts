@@ -46,7 +46,7 @@ export const features: SiteFeature[] = [
     label: "How I Solve Problems",
     description: "Blog-style articles on automation strategy and quality leadership.",
     group: "Content",
-    status: "planned",
+    status: "live",
   },
   {
     id: 4,
@@ -214,13 +214,13 @@ export function getFeatureBySlug(slug: string): SiteFeature | undefined {
 }
 
 export const plannedArticles = [
-  "Why 90% Automation Coverage is a Bad Goal",
-  "When NOT to Automate",
-  "Why Flaky Tests Destroy Engineering Teams",
-  "How I Reduced Test Runtime from 6 Hours to 30 Minutes",
-  "Shift Left Testing Explained",
-  "Building Trust in Automation",
-  "Automation ROI Calculator",
+  "Why 90% Test Automation Coverage Is One of the Worst Goals You Can Set",
+  "When NOT to Automate: The Most Valuable Test Might Be the One You Never Write",
+  "Why Flaky Tests Destroy Engineering Teams (It's Not Just About Broken Tests)",
+  "How I Reduced a 6-Hour Test Suite to 30 Minutes (Without Deleting Quality)",
+  "Shift Left Testing Isn't About Testing Earlier—It's About Building Better Software",
+  "Building Trust in Test Automation: Why Green Builds Don't Mean You're Winning",
+  "Your Automation ROI Calculator Is Probably Wrong",
 ] as const;
 
 export const playgroundDemos = [

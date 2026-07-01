@@ -1,23 +1,202 @@
 ---
-title: "Why 90% Automation Coverage is a Bad Goal"
-description: "Coverage percentages look good in dashboards but often mislead teams about actual quality and release confidence."
-date: "2026-01-15"
-status: draft
+title: "Why 90% Test Automation Coverage Is One of the Worst Goals You Can Set"
+description: "Chasing automation coverage percentages might make dashboards look impressive, but it rarely improves software quality. Here's what experienced QA leaders measure instead."
+date: "2026-06-30"
+status: published
+tags:
+  - Test Automation
+  - Quality Engineering
+  - Leadership
+  - Metrics
+  - CI/CD
+readingTime: "10 min"
+---
+
+One of my favorite interview questions for QA leaders is simple:
+
+> **"What percentage of automation coverage are you aiming for?"**
+
+The answer is almost always one of three numbers: 80%, 90%, or the ambitious 100%.
+
+Then I ask a follow-up:
+
+> **"Coverage of what?"**
+
+That is when the conversation gets interesting.
+
+"Automation coverage" sounds objective. In practice, it is one of the most misunderstood measurements in Quality Engineering.
+
+I've worked with organizations that reported **95% automation coverage** while production defects continued to frustrate customers. I've also worked with teams whose dashboards showed lower percentages—but they deployed multiple times a day with strong confidence.
+
+The difference was not the number. It was **what they chose to measure**.
+
 ---
 
 ## The coverage trap
 
 Teams celebrate when automation coverage crosses 90%. Leadership sees green dashboards. Engineers feel progress.
 
-But coverage alone does not measure whether the right scenarios are automated, whether tests are stable, or whether failures provide actionable signal.
+But coverage alone does not tell you whether the right scenarios are automated, whether tests are stable, or whether failures provide actionable signal. It is easy to optimize a metric that looks good in a slide deck while missing the workflows that actually protect the business.
 
-## What to measure instead
+That is the coverage trap: mistaking measurement activity for quality outcomes.
 
-- **Risk-based coverage** of critical user journeys
-- **Defect escape rate** and mean time to detect
-- **Flake rate** and test maintenance cost
-- **Pipeline feedback time** from commit to actionable results
+---
 
-## Leadership takeaway
+## Numbers Make Us Feel Safe
 
-Use coverage as a diagnostic, not a destination. The goal is release confidence — not a percentage on a slide.
+Percentages are comforting. Leadership loves upward trends. Engineers enjoy watching metrics improve.
+
+> "We've increased automation coverage from 72% to 91%."
+
+That sounds like progress. Software quality is not a gas tank—more is not automatically better.
+
+A dashboard showing 90% coverage does not answer:
+
+- Are we testing the features customers use most?
+- Do developers trust the automation?
+- Are failures easy to diagnose?
+- How many production bugs are escaping?
+- How quickly do engineers receive feedback?
+
+Those questions determine release confidence. Coverage alone answers very few of them.
+
+---
+
+## The Coverage Number Is Often Made Up
+
+Here is an uncomfortable truth: ask five teams how they calculate automation coverage and you will likely get five different answers.
+
+Some count requirements. Some count test cases. Others count API endpoints, code coverage, or user stories. None of these approaches is inherently wrong. The problem is presenting them as if they measure the same thing.
+
+Without a shared definition, comparing coverage across teams—or even across quarters—is often meaningless.
+
+---
+
+## You Can Reach 100% Coverage and Still Miss Critical Bugs
+
+Imagine an e-commerce application where you automate login, registration, profile updates, password changes, search, wish lists, reviews, and notification settings.
+
+On paper, coverage looks excellent. Now imagine one workflow was never automated: **checkout**.
+
+From a customer perspective, that is catastrophic. From a dashboard perspective, you still look successful.
+
+Not every feature carries the same business risk. Coverage without risk context creates a dangerous illusion.
+
+---
+
+## Every Test Should Protect Something Important
+
+Automation is not about proving software works. It is about protecting the business from risk.
+
+When prioritizing automation, I do not ask *"Can we automate this?"* I ask:
+
+> **"What happens if this breaks in production?"**
+
+If the answer involves customers unable to log in, failed payments, lost orders, unavailable patient records, or compromised security—that workflow deserves strong automation focus.
+
+If the answer is *"spacing on a settings page looks slightly different,"* that may not be the best place to invest.
+
+Risk—not percentages—should drive priorities.
+
+---
+
+## More Tests Don't Always Mean More Confidence
+
+I've inherited suites with thousands of tests. Some organizations celebrated that. I worried about it.
+
+After a point, more tests often produce diminishing returns: longer pipelines, higher maintenance, more flakes, duplicate coverage, slower feedback, and rising infrastructure cost. Teams can end up spending more time maintaining automation than benefiting from it.
+
+That is not progress. That is debt.
+
+---
+
+## The Goal Isn't More Tests. It's Better Decisions.
+
+Automation exists to answer one question:
+
+> **"Is it safe to deploy?"**
+
+If your suite answers that confidently in fifteen minutes, you have built something valuable. If it takes six hours, flakes randomly, and engineers rerun pipelines repeatedly, dashboard coverage does not matter—developers will not trust it.
+
+---
+
+## The Metrics I Actually Care About
+
+I pay less attention to coverage percentages and more attention to signals that reflect engineering health:
+
+| Metric | Why it matters |
+|--------|----------------|
+| **Risk-based coverage** | Confirms critical workflows are protected, not just test volume |
+| **Escaped defects** | Shows how often issues still reach customers |
+| **Mean time to detect (MTTD)** | Measures how quickly problems are found after change |
+| **Pipeline feedback time** | Reflects how fast developers get actionable signal |
+| **Flake rate** | Indicates automation reliability |
+| **Maintenance hours** | Surfaces the ongoing cost of ownership |
+| **Deployment frequency** | Shows whether automation is enabling delivery speed |
+
+Notice what is missing: a single coverage percentage. That is intentional.
+
+---
+
+## Risk-Based Coverage Is a Better Conversation
+
+If asked about automation coverage today, I would not lead with *"We're 92% automated."* I would say:
+
+- Every payment workflow is automated
+- Authentication is fully covered
+- Critical APIs have contract tests
+- Every deployment runs smoke tests on highest-risk journeys
+- Production incidents have decreased materially
+
+That is a business conversation executives understand.
+
+---
+
+## Don't Ignore Test Quality
+
+Coverage says nothing about test quality.
+
+**Team A:** 95% coverage, 18% flake rate, six-hour pipeline, frequent reruns, developers ignore failures.
+
+**Team B:** 60% coverage, 1% flake rate, twenty-minute pipeline, stable gates, developers trust failures.
+
+Which team would you rather inherit?
+
+Reliable automation beats inflated coverage numbers.
+
+---
+
+## Ask Better Questions
+
+Instead of asking *"How much have we automated?"*, ask:
+
+- Are we protecting the workflows that matter most?
+- Do developers trust pipeline failures?
+- How quickly do engineers receive useful feedback?
+- Are production defects decreasing?
+- Is automation becoming easier—or harder—to maintain?
+- Are customers experiencing fewer issues after releases?
+
+Those questions lead to healthier decisions than chasing arbitrary percentages.
+
+---
+
+## Coverage Is a Diagnostic, Not a KPI
+
+Coverage still has value. It can reveal gaps, highlight under-automated areas, and guide prioritization. But it should be a diagnostic tool—not a finish line.
+
+A fuel gauge is useful. You would not judge overall vehicle health by tank level alone. Automation coverage is one signal among many.
+
+---
+
+## Final Thoughts
+
+One of the biggest shifts in my career was realizing success is not measured by how many tests exist. It is measured by how confidently the organization can release software.
+
+That confidence comes from stable automation, fast feedback, high-value coverage, meaningful quality metrics, and a focus on business risk instead of arbitrary percentages.
+
+The next time someone announces **90% automation coverage**, do not start with how they calculated it. Ask a better question:
+
+> **"Do you trust your pipeline enough to deploy on a Friday afternoon?"**
+
+That is the metric that matters. Everything else is just a number on a dashboard.

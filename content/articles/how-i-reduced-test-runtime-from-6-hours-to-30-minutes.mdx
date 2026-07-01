@@ -1,0 +1,215 @@
+---
+title: "How I Reduced a 6-Hour Test Suite to 30 Minutes (Without Deleting Quality)"
+description: "A faster test suite isn't built by throwing more machines at the problem. Here's how measuring the right metrics, redesigning test architecture, and eliminating waste transformed a six-hour regression suite into a 30-minute pipeline."
+date: "2026-06-30"
+status: published
+tags:
+  - Test Automation
+  - Playwright
+  - CI/CD
+  - Quality Engineering
+  - Performance
+readingTime: "10 min"
+---
+
+There are few phrases that make developers cringe more than:
+
+> **"The regression suite is still running."**
+
+I've been there. You finish a feature, open a pull request, and then you wait. You switch tasks, answer emails, grab another coffee—and three hours later the pipeline fails on a flaky test that has nothing to do with your change. So you rerun the entire suite and wait again.
+
+I've seen this pattern in multiple organizations. Every time, the result is the same: engineers stop valuing the pipeline because it slows them down instead of accelerating delivery.
+
+One of the largest performance improvements I've led was reducing a regression suite that consistently took **over six hours** to complete down to **under thirty minutes**.
+
+We did not get there by buying more hardware. We got there by changing how we thought about automation.
+
+---
+
+## The First Mistake Was Assuming We Knew the Problem
+
+Like most engineering teams, we had opinions. Someone blamed Selenium. Someone blamed Jenkins. Someone blamed network latency. Someone insisted we just needed larger build agents.
+
+Everyone had a theory. Nobody had data.
+
+So we started there.
+
+Before writing optimization code, we instrumented the pipeline end to end: every test, suite, setup step, teardown, retry, and failure. Within a week, we had a dashboard showing exactly where time was spent.
+
+The results surprised everyone.
+
+---
+
+## The 80/20 Rule Showed Up Again
+
+Nearly **20% of our automated tests accounted for almost 70% of total runtime**.
+
+Those were not our most valuable tests. They were often our oldest—written years earlier when the application architecture looked very different. Several repeated the same setup steps. Others logged in through the UI before every case. Some navigated through five or six screens to validate a single button.
+
+None of this was intentional. It was technical debt that accumulated quietly over time. Without per-test timing data, we never would have found it.
+
+One lesson I keep relearning:
+
+> **You can't optimize what you don't measure.**
+
+---
+
+## We Stopped Treating Every Test the Same
+
+A major mindset shift was recognizing that not every automated test deserves the same execution priority.
+
+For years, our pipeline treated every test equally—whether it validated a critical payment workflow or a rarely used settings page. That sounds thorough. It also wastes a lot of time.
+
+We reorganized automation into layers:
+
+### Smoke tests
+
+These answered one question:
+
+> "Did we break something obvious?"
+
+They ran on every pull request and completed in minutes.
+
+### Regression tests
+
+These validated broader application behavior. They still mattered—they just did not need to run every time someone updated a CSS file.
+
+### Full end-to-end validation
+
+Our most comprehensive scenarios moved to nightly schedules and release gates. Developers got fast feedback on every commit while we preserved confidence before production.
+
+Not every test needs to run all the time. That is one of the hardest lessons for automation teams to accept.
+
+---
+
+## We Eliminated UI Setup Wherever Possible
+
+One discovery was almost embarrassing: many UI tests spent more time preparing state than validating behavior.
+
+A typical flow looked like this:
+
+- Open browser
+- Navigate to login
+- Enter credentials and wait for redirects
+- Navigate through menus
+- Create test data
+- Open another page
+- Finally execute the assertion
+
+The assertion took about five seconds. Everything before it took nearly two minutes.
+
+The browser was not the problem. Our setup process was.
+
+We shifted data preparation to backend APIs wherever possible:
+
+- Create customer accounts through service endpoints
+- Generate orders directly in the database or API layer
+- Authenticate with tokens instead of clicking through login every time
+
+The browser should validate user behavior—not act as a data-creation tool. That architectural change alone removed hours from execution time.
+
+---
+
+## Parallelization Isn't Just Adding More Workers
+
+When people hear "parallel execution," they often assume the fix is simple:
+
+> Add more machines.
+
+It usually is not.
+
+When we increased worker counts without redesigning isolation, failures spiked. Tests fought over shared accounts. Database records collided. Cleanup jobs deleted each other's data. Random failures appeared everywhere.
+
+The bottleneck was not CPU. It was test isolation.
+
+Once each worker owned dedicated test data and cleanup boundaries, parallel execution became reliable. Only then could we scale from a handful of workers to dozens running concurrently.
+
+Parallelization is rarely a hardware problem. It is an architecture problem.
+
+---
+
+## Duplicate Tests Were Slowing Us Down
+
+We also found dozens of tests verifying the same behavior from slightly different angles—natural drift across teams, releases, and engineers over time.
+
+More tests did not mean more coverage. Sometimes it meant more maintenance. Every duplicate added:
+
+- Execution time
+- Maintenance overhead
+- Flake surface area
+- Debugging cost when functionality changed
+
+Removing redundant tests felt risky at first. In practice, the suite became faster and easier to own without reducing confidence.
+
+Quality is not measured by test count. It is measured by the risks those tests cover.
+
+---
+
+## Faster Feedback Changed Developer Behavior
+
+The most interesting outcome was not purely technical—it was cultural.
+
+When validation took six hours, developers often merged and hoped for the best. Long feedback loops encouraged context switching; people moved on before learning whether they introduced a defect.
+
+After we cut runtime, behavior changed. Developers waited for results, fixed failures immediately, and merged faster. Release confidence improved.
+
+Shorter feedback loops do not just improve pipelines. They improve engineering habits.
+
+---
+
+## The Metrics That Actually Mattered
+
+Runtime was the primary goal, but we tracked additional signals to ensure we were not trading quality for speed:
+
+| Metric | Why we tracked it |
+|--------|-------------------|
+| Total pipeline runtime | Overall developer feedback speed |
+| Average test duration | Identified slow or inefficient tests |
+| Flake rate | Confirmed optimizations did not reduce stability |
+| Queue time | Exposed CI infrastructure bottlenecks |
+| Parallel worker utilization | Helped balance workloads across agents |
+| Mean time to feedback | Reflected how quickly developers could act |
+
+Runtime alone would have painted an incomplete picture.
+
+---
+
+## What I Would Do First Today
+
+If I joined a team tomorrow with another six-hour regression suite, I would not start by deleting tests or provisioning larger agents. I would answer a few questions first:
+
+- Which tests are the slowest?
+- Which tests fail most often?
+- How much time is spent on setup versus validation?
+- Can setup move from UI to APIs?
+- Which tests are duplicated?
+- Are we running the right tests at the right time?
+- Can the framework support parallel execution safely?
+
+Those answers usually reveal opportunities far more impactful than adding compute.
+
+---
+
+## The Biggest Lesson
+
+Reducing runtime was not primarily about making individual tests execute faster. It was about removing waste:
+
+- Unnecessary UI navigation
+- Duplicated assertions
+- Inefficient setup patterns
+- Tests running more frequently than needed
+- Architecture that blocked safe parallelization
+
+Each improvement was small on its own. Together, they transformed the developer experience.
+
+---
+
+## Final Thoughts
+
+A six-hour test suite does not just slow CI. It slows the entire engineering organization—pull requests stay open longer, defects are discovered later, and releases become more stressful.
+
+The purpose of automation is fast, trustworthy feedback that helps teams ship with confidence. Sometimes that means writing new tests. Sometimes it means deleting old ones. And sometimes the biggest gain is not more automation—it is making the automation you already have dramatically faster.
+
+Because the best test is not just one that catches bugs.
+
+**It is one that catches them before your developer has time to forget what they just changed.**

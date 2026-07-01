@@ -3,24 +3,31 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SectionHeader } from "@/components/dashboard/section-header";
 import { getAllArticles } from "@/lib/articles";
+import { getUnpublishedPlannedTitles } from "@/lib/data/articles";
 import { createPageMetadata } from "@/lib/page-metadata";
-import { getFeatureBySlug, plannedArticles } from "@/lib/site-config";
+import { getFeatureBySlug } from "@/lib/site-config";
 
 const feature = getFeatureBySlug("articles")!;
 
 export const metadata = createPageMetadata(feature);
 
 export default function ArticlesPage() {
-  const articles = getAllArticles();
+  const articles = getAllArticles().filter((article) => article.status === "published");
+  const unpublishedPlanned = getUnpublishedPlannedTitles(articles.map((article) => article.title));
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8" data-testid="articles-page">
       <SectionHeader title={feature.label} description={feature.description} />
 
       {articles.length > 0 ? (
         <div className="grid gap-4">
           {articles.map((article) => (
-            <Card key={article.slug} className="border-border/60 bg-card/80">
+            <Card
+              key={article.slug}
+              className="border-border/60 bg-card/80"
+              data-testid="article-card"
+              data-article-slug={article.slug}
+            >
               <CardHeader>
                 <div className="flex items-start justify-between gap-4">
                   <CardTitle className="text-lg">
@@ -42,19 +49,21 @@ export default function ArticlesPage() {
         </div>
       ) : null}
 
-      <div className="space-y-4">
-        <h2 className="text-lg font-semibold">Planned articles</h2>
-        <ul className="grid gap-2 sm:grid-cols-2">
-          {plannedArticles.map((title) => (
-            <li
-              key={title}
-              className="rounded-md border border-dashed border-border/60 bg-card/40 px-4 py-3 text-sm text-muted-foreground"
-            >
-              {title}
-            </li>
-          ))}
-        </ul>
-      </div>
+      {unpublishedPlanned.length > 0 ? (
+        <div className="space-y-4" data-testid="planned-articles">
+          <h2 className="text-lg font-semibold">Planned articles</h2>
+          <ul className="grid gap-2 sm:grid-cols-2">
+            {unpublishedPlanned.map((title) => (
+              <li
+                key={title}
+                className="rounded-md border border-dashed border-border/60 bg-card/40 px-4 py-3 text-sm text-muted-foreground"
+              >
+                {title}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
     </div>
   );
 }
