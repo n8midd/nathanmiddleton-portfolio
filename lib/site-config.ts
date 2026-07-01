@@ -172,7 +172,7 @@ export const features: SiteFeature[] = [
     label: "AI in Testing",
     description: "LLM-assisted testing, RAG evaluation, and synthetic data generation.",
     group: "Content",
-    status: "planned",
+    status: "live",
   },
   {
     id: 18,
