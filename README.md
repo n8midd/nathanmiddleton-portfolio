@@ -49,7 +49,7 @@ automation/       Framework Demo documentation (live tests in tests/e2e/)
 | **3** | Testing Playground, Bug Hunt Game | Live |
 | **4** | Test Case Builder, Live API Explorer | Planned |
 | **5** | Framework Architecture, CI/CD Pipeline Visualizer | Live |
-| **6** | Articles, QA Leadership, Lessons Learned | Articles live; Leadership & Lessons planned |
+| **6** | Articles, QA Leadership, Lessons Learned | Articles + QA Leadership live; Lessons planned |
 | **7** | Interactive Resume, Technical Stack | Technical Stack live; Resume planned |
 | **8** | Metrics Dashboard, Interview Prep | Live |
 | **9** | Architecture Whiteboard, Exercises, Snippets | Planned |

@@ -1,0 +1,111 @@
+---
+title: "Building Teams"
+summary: "Structure, rituals, and culture that make quality a team sport."
+categoryId: people
+practices:
+  - "Embed quality engineers in product teams with clear charters"
+  - "Establish shared on-call and triage rotation for automation failures"
+  - "Run blameless retros focused on system improvements"
+  - "Define team norms for PR review and test ownership"
+pitfalls:
+  - "Centralized QA team disconnected from product context"
+  - "No shared definition of done for automation PRs"
+  - "Celebrating test count instead of defect prevention"
+relatedArticleSlug: why-flaky-tests-destroy-engineering-teams
+readingTime: "9 min"
+status: published
+---
+
+You can hire strong SDETs individually and still fail as a quality organization.
+
+Teams win when structure, rituals, and incentives align so that quality is everyone's outcome—not a department that arrives at the end of the sprint with a checklist.
+
+Building a quality team is building a system where good decisions are the default.
+
+---
+
+## Team Models That Work
+
+**Embedded model:** SDETs sit with product squads. They know the domain, attend planning, and own automation for their area. Best for fast-moving product orgs.
+
+**Platform / enablement model:** A central team builds CI tooling, shared libraries, and templates. Best for large orgs with common infrastructure needs.
+
+**Hybrid:** Embedded SDETs for product work plus a small platform team for shared concerns. Most enterprises land here eventually.
+
+The failure mode is accidental hybrid—embedded on paper but pulled into random manual testing every release because staffing math never worked.
+
+---
+
+## Charters and Boundaries
+
+Every quality team needs a written charter answering:
+
+- What do we own vs. advise on?
+- What are our SLAs for triage and pipeline health?
+- How do we interact with dev leads on merge criteria?
+- What is explicitly *not* our job?
+
+Without charters, quality teams become "everything nobody else wants"—data setup, release coordination, manual regression, production support, and automation, all at once.
+
+---
+
+## Rituals That Scale Culture
+
+**Weekly flake review:** Top failing tests, owners assigned, fix or quarantine decisions documented.
+
+**Three Amigos (when real):** Product, dev, QA align on acceptance criteria before code—not after.
+
+**Definition of done for tests:** PRs include reproduction steps, stable selectors, appropriate layer (unit/API/UI), and rollback plan for CI impact.
+
+**Quality office hours:** Developers drop in for help with testability—not gatekeeping.
+
+Rituals only matter if leadership protects calendar time for them.
+
+---
+
+## Psychological Safety
+
+Teams stop reporting quality risks when blame is the default. Flaky tests get `@ignored`. Red builds get rerun until green. Everyone learns to look busy, not honest.
+
+Blameless retrospectives, executive support for stabilization sprints, and celebrating caught defects pre-production reinforce the right behavior.
+
+If the only metric leadership praises is velocity, teams will hide quality work until it explodes in production.
+
+---
+
+## Scaling Without Losing Standards
+
+Growth introduces drift: different frameworks, locator styles, CI patterns, naming conventions.
+
+Combat drift with:
+
+- Shared templates and linters for test code
+- Architecture reviews for new suites
+- Internal docs with examples, not policy PDFs
+- Rotation so engineers see multiple codebases
+
+Consistency reduces cognitive load when engineers move between squads.
+
+---
+
+## Where This Goes Wrong
+
+**Us vs. them:** QA in a separate building (literal or cultural) from developers.
+
+**Hero culture:** One person knows the framework; bus factor of one.
+
+**Manual crunch every release:** Automation team never gets sprint capacity for maintenance.
+
+**No career path:** Test engineers leave because "promotion" means becoming a manager or leaving QA.
+
+**Metric mismatch:** Team rewarded for closing tickets while flake rate climbs.
+
+---
+
+## What Good Looks Like
+
+Developers ask QA how to make features testable early. Product includes acceptance criteria without being forced. Failed builds get investigated, not rerun blindly. Juniors have mentors and ownership.
+
+You know the team is working when quality conversations happen in planning—not only in the war room after a bad deploy.
+
+That culture is built deliberately. It rarely appears by accident.

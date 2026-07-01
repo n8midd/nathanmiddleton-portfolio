@@ -1,0 +1,110 @@
+---
+title: "Roadmaps"
+summary: "Sequence quality investments so stabilization and enablement come before vanity coverage."
+categoryId: strategy
+practices:
+  - "Balance feature automation with platform and flake-reduction work"
+  - "Publish quarterly themes with measurable outcomes"
+  - "Make tradeoffs visible when product demands compete with tech debt"
+  - "Include developer experience improvements in QA roadmaps"
+pitfalls:
+  - "Roadmaps that are only lists of tests to write"
+  - "No capacity reserved for maintenance and migration"
+  - "Committing to dates without dependency mapping across teams"
+readingTime: "8 min"
+status: published
+---
+
+Quality roadmaps fail when they are backlogs disguised as strategy.
+
+A roadmap answers: **What will be materially better about our release confidence in six months—and what are we not doing to get there?**
+
+Leaders who only roadmap new automation while ignoring flake, slow pipelines, and missing tooling set teams up for burnout and distrust.
+
+---
+
+## Roadmap Layers
+
+I structure quality roadmaps in three layers:
+
+**Protect:** Stabilize critical paths, fix top flakes, restore CI trust
+
+**Enable:** Shared libraries, better fixtures, faster feedback, observability
+
+**Expand:** New coverage for new features and risk areas
+
+Teams under trust pressure must overweight Protect. Teams with healthy pipelines can Expand.
+
+Skipping layers is how you add 500 tests to a suite nobody believes.
+
+---
+
+## Outcomes Over Outputs
+
+Bad roadmap item: "Automate checkout."
+
+Better: "Reduce checkout-related production escapes by 50% with monitored E2E plus contract tests; p95 pipeline feedback under 25 minutes."
+
+Outputs are easy to game. Outcomes force honesty about whether work mattered.
+
+---
+
+## Negotiating With Product
+
+Product roadmaps compete for the same engineers. Quality leaders need translation skills:
+
+- Frame stabilization as **speed enablers** ("flake fixes unlock parallel releases")
+- Tie enablement to **feature throughput** ("shared login fixture saves 2 days per squad per quarter")
+- Show cost of **not** investing ("last incident: 14 hours war room, $X impact")
+
+Bring data from incidents and pipeline metrics—not moral arguments about "quality."
+
+---
+
+## Dependencies and Sequencing
+
+Quality work often depends on platform teams: test environments, feature flags, observability, API versioning.
+
+Roadmaps should call out dependencies explicitly and identify DRI partners outside QA.
+
+Surprises in week 10 of a quarter mean the roadmap was wishful, not planned.
+
+---
+
+## Communicating Roadmap Changes
+
+Priorities shift. Good leaders update roadmaps visibly when:
+
+- A production incident reprioritizes stabilization
+- A product launch accelerates
+- Headcount changes
+
+Silent reprioritization erodes trust. Teams keep working on obsolete goals while leadership expects something else.
+
+---
+
+## Where This Goes Wrong
+
+**Infinite backlog:** No quarterly cut line; everything is "next."
+
+**Vanity milestones:** "1000 automated tests" without quality outcome.
+
+**No maintenance budget:** Roadmap assumes tests never break.
+
+**Tool migration without transition plan:** Big-bang rewrite promises that stall feature work for quarters.
+
+**Roadmap theater:** Slides for executives that the working team never uses.
+
+---
+
+## The Roadmap Sanity Check
+
+Ask each quarter:
+
+1. Did we improve trust in automation (flake rate, MTTR, developer adoption)?
+2. Did we reduce escape defects in our stated focus areas?
+3. Can we demo what changed—not just what we wrote?
+
+If all three are no, the roadmap needs rewriting, not harder execution.
+
+Roadmaps are leadership tools. Used well, they align the org on what "better quality" means in concrete terms.

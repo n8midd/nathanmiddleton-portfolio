@@ -1,0 +1,111 @@
+---
+title: "Test Strategy"
+summary: "A living map of what to test, where, and why—not a one-time slide deck."
+categoryId: strategy
+practices:
+  - "Anchor strategy in business risk and release cadence"
+  - "Define the test pyramid mix per product area"
+  - "Review strategy quarterly with engineering leadership"
+  - "Document what you intentionally do not automate"
+pitfalls:
+  - "Strategy documents that never update after the first roadmap meeting"
+  - "Copy-pasting another company's pyramid without context"
+  - "Treating strategy as QA-only instead of an engineering agreement"
+relatedArticleSlug: when-not-to-automate
+readingTime: "9 min"
+status: published
+---
+
+Test strategy is not a 40-slide deck for a quality offsite.
+
+It is the shared answer to: **What must be true before we ship, and how do we prove it efficiently?**
+
+When strategy is clear, teams argue less about whether to automate a screen and more about whether that screen protects revenue.
+
+---
+
+## Start With Risk, Not Tools
+
+Before Playwright vs. Selenium debates, map:
+
+- Critical user journeys (signup, pay, fulfill, admin)
+- Compliance and regulatory constraints
+- Integration points that break often
+- Areas with high change frequency vs. stable core
+
+Strategy allocates testing effort proportional to blast radius—not proportional to which team shouted loudest in planning.
+
+---
+
+## The Pyramid Is a Budget, Not a Religion
+
+Unit tests are cheap feedback. Contract tests catch integration drift. UI tests prove end-to-end behavior users care about.
+
+Strategy defines the *mix* per product:
+
+- API-heavy backend service → thick contract layer, thin UI
+- Complex multi-step UI wizard → targeted UI journeys plus API setup
+- Mobile + web parity → shared API coverage, platform-specific UI smoke
+
+A pyramid diagram on a wall helps nobody if numbers are not tied to real suites and owners.
+
+---
+
+## Quality Gates by Stage
+
+Strategy should specify what runs when:
+
+- **PR:** Fast smoke, lint, unit, targeted integration
+- **Merge to main:** broader regression, contract suite
+- **Pre-release:** full regression, perf smoke, accessibility spot checks
+- **Post-deploy:** synthetic monitoring, canary validation
+
+Gates must match team capacity. A 6-hour PR gate is a strategy failure, not a discipline win.
+
+---
+
+## Living Document Discipline
+
+Strategy rots when products pivot. I review with eng leads quarterly:
+
+- What shipped that invalidated assumptions?
+- Where did defects escape? Which layer should have caught them?
+- Is automation maintenance cost still justified per area?
+
+Updates are diffs, not rewrites—show what changed and why.
+
+---
+
+## Alignment Beats Perfection
+
+A good strategy everyone follows beats a perfect strategy in a wiki no one reads.
+
+Socialize drafts in engineering forums. Tie strategy to roadmap themes ("this quarter: stabilize payments automation"). Assign owners to each major risk area.
+
+When dev leads co-sign strategy, QA stops being the only voice advocating for testing time.
+
+---
+
+## Where This Goes Wrong
+
+**Shelfware:** Beautiful Confluence doc, zero connection to CI jobs actually running.
+
+**Coverage goals as strategy:** "90% automation" is a metric target, not a risk map.
+
+**One pyramid for all products:** Platform team and customer-facing app have different needs.
+
+**No exit criteria:** Teams never retire obsolete tests because strategy never says they can.
+
+**Strategy without capacity plan:** Promised gates that require 20 SDETs; team has six.
+
+---
+
+## Strategy in One Question
+
+When someone proposes a new test suite, strategy should make this easy to answer:
+
+> **If this suite disappears tomorrow, what customer pain becomes likely?**
+
+If the answer is "not much," deprioritize. If the answer is "checkout breaks silently," protect it fiercely.
+
+That question keeps strategy honest—and keeps automation focused on outcomes, not activity.

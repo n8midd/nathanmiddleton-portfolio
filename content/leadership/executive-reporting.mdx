@@ -1,0 +1,124 @@
+---
+title: "Executive Reporting"
+summary: "Translate quality data into business language executives can act on."
+categoryId: metrics
+practices:
+  - "Lead with customer impact and delivery risk, not test counts"
+  - "Show trends over time with clear assumptions documented"
+  - "Present options and tradeoffs, not only problems"
+  - "Align reporting cadence to executive decision cycles"
+pitfalls:
+  - "Green dashboards that hide quarantined tests and weak assertions"
+  - "Jargon-heavy reports (flake, POM, xpath) without business framing"
+  - "Surprise bad news in QBRs instead of steady monthly signal"
+relatedArticleSlug: building-trust-in-automation
+readingTime: "9 min"
+status: published
+---
+
+Executives do not need to know your locator strategy.
+
+They need to know: **Can we ship? What breaks if we do? What investment reduces risk without killing velocity?**
+
+Executive reporting is translation—turning pipeline noise into decisions the leadership team can make in the room.
+
+---
+
+## What Executives Actually Care About
+
+**Customer impact:** Escaped defects, incident frequency, severity trends
+
+**Delivery confidence:** Can we hit the date without a fire drill?
+
+**Cost of delay vs. cost of failure:** Tradeoffs framed in business terms
+
+**Investment ROI:** Will this headcount, tool, or stabilization sprint pay back?
+
+They generally do not care about your total test count unless it clearly connects to one of the above.
+
+---
+
+## Structure That Works
+
+I use a consistent monthly format:
+
+1. **Headline** — one sentence on release confidence (stable / watch / at risk)
+2. **Customer impact** — escaped defects and incidents since last report
+3. **Delivery signals** — pipeline health, flake trend, feedback time
+4. **Focus areas** — what the quality org is improving this quarter
+5. **Asks** — decisions or resources needed from leadership
+
+Five slides or five bullets. Respect their time.
+
+---
+
+## Honesty Over Optics
+
+Green dashboards that hide quarantined tests destroy credibility the first time an executive asks a sharp question.
+
+Report warts with remediation plans:
+
+- "Flake rate rose 3 points; top five tests identified; stabilization sprint weeks 2–3"
+- "Coverage metric flat; intentional—deprioritized low-value UI tests per strategy"
+
+Executives forgive problems they knew about. They do not forgive surprises.
+
+---
+
+## Framing Tradeoffs
+
+Executives make resource decisions. Help them:
+
+> "Option A: ship Friday with manual regression on payments only—residual risk on admin workflows. Option B: delay two days, complete automated regression—lower escape risk."
+
+Quality leaders who only say "no" get sidelined. Leaders who present options stay in the room.
+
+---
+
+## Cadence and Channels
+
+**Monthly** written summary for VP+ audience
+
+**Quarterly** deeper dive tied to roadmap outcomes
+
+**Ad hoc** within 48 hours of significant incidents—facts, impact, corrective actions
+
+Slack summaries for operational leaders; formal decks for steering committees.
+
+Match channel to decision authority.
+
+---
+
+## Building Trust Over Quarters
+
+Early reports establish baseline and methodology. Later reports show trend.
+
+Document assumptions: "Escaped defect counts exclude cosmetic issues per agreed severity matrix."
+
+When methodology changes, footnote it. Comparability matters more than perfect charts.
+
+---
+
+## Where This Goes Wrong
+
+**Vanity metrics:** Leading with 95% pass rate while developers ignore failures.
+
+**Technical deep dives:** Losing the room in the first three minutes.
+
+**No asks:** Reporting problems without proposed paths forward.
+
+**Inconsistent severity:** Escaped defect math changes every quarter; trends meaningless.
+
+**QA-only audience:** Engineering and product leaders never see the same data—narratives diverge.
+
+---
+
+## The Executive Question
+
+Before every report, answer:
+
+> **What decision does this audience need to make, and what do they need to believe to make it well?**
+
+If your report does not support that question, it is activity reporting—not leadership.
+
+Executive reporting earns QA leaders a seat at strategy tables. Without it, quality stays invisible until incidents make it impossible to ignore.

@@ -1,0 +1,109 @@
+---
+title: "Risk Assessment"
+summary: "Prioritize testing where failure hurts customers and the business—not everywhere equally."
+categoryId: strategy
+practices:
+  - "Score features by impact, likelihood, and detectability"
+  - "Reassess risk after architecture or compliance changes"
+  - "Involve product and engineering in risk workshops"
+  - "Link test coverage decisions to documented risk items"
+pitfalls:
+  - "Risk registers that live in QA folders nobody else reads"
+  - "Treating all user stories as equal priority"
+  - "Ignoring operational risk (deployments, rollbacks, observability)"
+readingTime: "8 min"
+status: published
+---
+
+Risk assessment is how quality teams say "no" with evidence and "yes" with focus.
+
+Without it, every feature request arrives with the same urgency, every bug feels P0, and automation sprawls across low-value screens while payment flows ship with gaps.
+
+Good risk assessment makes tradeoffs visible before production teaches the lesson.
+
+---
+
+## Risk Is a Conversation, Not a Spreadsheet Exercise
+
+Start with cross-functional input: product knows customer impact, engineering knows technical fragility, QA knows historical defect patterns, support knows ticket themes.
+
+Workshops beat solo QA spreadsheets. When product managers help score risk, they understand why testing time lands where it does.
+
+---
+
+## A Practical Scoring Model
+
+I use a simple impact × likelihood frame, adapted from release planning:
+
+**Impact:** Revenue, compliance, data loss, reputation, recovery difficulty
+
+**Likelihood:** Change frequency, complexity, dependency count, team familiarity
+
+**Detectability:** Can monitoring, unit tests, or support channels catch issues quickly if they slip?
+
+High impact + high likelihood + low detectability = test deeply, automate durably, gate releases.
+
+Low impact + rare change + easy rollback = manual exploratory or skip automation entirely.
+
+---
+
+## Risk Beyond Functional Bugs
+
+Teams often assess feature risk but ignore:
+
+- **Deployment risk** — bad migrations, config drift, feature flags
+- **Performance risk** — latency under load, queue backlogs
+- **Security risk** — auth, injection, sensitive data exposure
+- **Data risk** — incorrect reporting, reconciliation failures
+
+Quality strategy must include non-functional risk or it becomes UI checkbox theater.
+
+---
+
+## Connecting Risk to the Test Portfolio
+
+Each major risk item should map to:
+
+- Tests or monitors that detect it
+- Owner responsible for keeping those checks healthy
+- Review cadence (especially after refactors)
+
+When risk items have no linked verification, you found a planning gap—not a "QA bandwidth" problem.
+
+---
+
+## When Risk Changes
+
+Acquisitions, new payment providers, regulatory updates, and platform migrations reset risk profiles overnight.
+
+Schedule explicit reassessment after:
+
+- Major architecture changes
+- Production incidents
+- Entry into new markets or customer segments
+
+Old risk registers become false comfort if they are not maintained.
+
+---
+
+## Where This Goes Wrong
+
+**Checkbox risk:** Filling a template for audit without changing behavior.
+
+**QA-only ownership:** Developers never see risk scores, so testability stays an afterthought.
+
+**Analysis paralysis:** Weeks of workshops, zero updated tests.
+
+**Ignoring customer segments:** Risk for enterprise admins differs from mobile consumers—lumping them hides gaps.
+
+**Static priorities:** Everything marked medium risk, which means nothing is prioritized.
+
+---
+
+## Risk Assessment in One Sentence
+
+If you cannot explain **what bad thing happens** when this area fails, you are not ready to decide **how** to test it.
+
+Risk assessment forces that sentence to exist—and shared across the team, not locked in a QA head.
+
+That clarity is the foundation every other leadership practice builds on.

@@ -1,0 +1,127 @@
+---
+title: "Stakeholder Communication"
+summary: "Keep product, engineering, and leadership aligned on quality without becoming a bottleneck."
+categoryId: communication
+practices:
+  - "Share quality status in forums product and engineering already attend"
+  - "Use plain language and tie updates to user impact"
+  - "Document agreements from Three Amigos and planning sessions"
+  - "Escalate early with options when timelines and quality conflict"
+pitfalls:
+  - "Quality updates only in separate QA channels nobody else reads"
+  - "Passive-aggressive bug reports that damage relationships"
+  - "Waiting until release week to surface major gaps"
+readingTime: "8 min"
+status: published
+---
+
+Quality leaders communicate upward, downward, and sideways—all day.
+
+Stakeholder communication is how you prevent QA from becoming a surprise factory at the end of sprints or a police department developers avoid.
+
+The best communicators make quality visible early, often, and in language stakeholders understand.
+
+---
+
+## Know Your Stakeholders
+
+**Product** cares about scope, dates, and customer promises
+
+**Engineering leads** care about technical debt, merge friction, and on-call pain
+
+**Developers** care about clear repro steps and fast feedback
+
+**Executives** care about risk, cost, and reputation
+
+**Support / CS** cares about what customers actually hit in production
+
+Same underlying facts, different framing. One-size-fits-all updates fail.
+
+---
+
+## Communication Channels That Work
+
+**Planning and refinement:** Quality present before stories are committed—not after.
+
+**Shared Slack channels:** Incident and release threads with facts, not blame.
+
+**Weekly squad syncs:** Short quality pulse—flake highlights, environment issues, upcoming test needs.
+
+**Release communications:** What was validated, known limitations, rollback criteria.
+
+Avoid QA-only status reports that never leave the quality silo.
+
+---
+
+## Writing and Speaking for Clarity
+
+Replace: "Automation failed in job 4421 on xpath //div[3]/button."
+
+With: "Checkout payment tests failed on staging after the pricing API change. Likely contract mismatch. Recommend holding deploy until API v2 migration completes or we patch test data."
+
+Context, impact, recommendation. Every time.
+
+---
+
+## Difficult Conversations
+
+When quality and timeline conflict:
+
+1. State facts and risk without moralizing
+2. Offer options with tradeoffs
+3. Ask who accepts residual risk if shipping proceeds
+4. Document the decision
+
+"Quality said no" is a failure mode. "Here are three paths; path C accepts X risk" is leadership.
+
+---
+
+## Building Relationships Before You Need Them
+
+Stakeholders listen to people they trust. Invest in:
+
+- Pairing with developers on hard bugs
+- Helping product understand testability constraints early
+- Sharing credit when releases go smoothly
+
+Communication is easier when you are not only visible during fires.
+
+---
+
+## Documentation as Communication
+
+Decision logs beat hallway agreements:
+
+- Accepted risk for a release
+- Environments that are out of scope for regression
+- Known flaky areas and mitigation
+
+Future you—and new team members—will need this context.
+
+---
+
+## Where This Goes Wrong
+
+**Radio silence until red:** Stakeholders learn not to trust early green signals.
+
+**Jargon walls:** Non-technical partners tune out.
+
+**Email novels:** Long threads without summary bullets or clear asks.
+
+**Us vs. them language:** "Dev broke our tests" poisons collaboration.
+
+**No closure:** Issues raised without owners or dates linger and erode credibility.
+
+---
+
+## The Stakeholder Test
+
+After each significant communication, ask:
+
+> **Does everyone know what changed, what we decided, and who owns next steps?**
+
+If not, the message failed—not the audience.
+
+Stakeholder communication turns quality from a department into a shared responsibility.
+
+That shift is how leaders scale impact beyond their own team size.

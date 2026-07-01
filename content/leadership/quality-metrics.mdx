@@ -1,0 +1,113 @@
+---
+title: "Quality Metrics"
+summary: "Measure what predicts customer pain and release confidence—not vanity counts."
+categoryId: metrics
+practices:
+  - "Track escaped defects, flake rate, and pipeline feedback time"
+  - "Segment metrics by product area and test layer"
+  - "Pair quantitative dashboards with qualitative team health signals"
+  - "Retire metrics that drive gaming behavior"
+pitfalls:
+  - "Automation coverage percentage as a north-star metric"
+  - "Pass rate without investigating what failures mean"
+  - "Dashboards nobody reviews in weekly operating rhythms"
+relatedArticleSlug: why-90-percent-automation-coverage-is-a-bad-goal
+readingTime: "9 min"
+status: published
+---
+
+Metrics shape behavior. If you measure test count, you get test count—not quality.
+
+Quality leaders choose metrics that predict customer pain, guide investment, and survive scrutiny from engineers who know when numbers lie.
+
+The goal is decision support, not dashboard decoration.
+
+---
+
+## Metrics Worth Tracking
+
+**Escaped defects** — bugs found in production by severity and area. The ultimate outcome metric if classified honestly.
+
+**Flake rate** — percentage of failures that pass on retry without code changes. Leading indicator of trust erosion.
+
+**Pipeline feedback time** — how long developers wait for actionable signal on PRs.
+
+**MTTR for test failures** — mean time to diagnose and fix broken automation or confirmed app bugs.
+
+**Deployment frequency and change failure rate** — DORA metrics contextualize quality work in delivery performance.
+
+**Test maintenance ratio** — time spent fixing tests vs. writing new ones. Rising ratio means architectural or process debt.
+
+---
+
+## Metrics to Treat Carefully
+
+**Automation coverage %** — only meaningful with explicit scope (lines, journeys, APIs). Easy to game and demoralizing when misused.
+
+**Total test count** — activity metric, not outcome.
+
+**Pass rate alone** — green builds with ignored tests or weak assertions lie.
+
+**Defects found in QA** — incentivizes finding bugs late instead of preventing them early.
+
+Use these with context or not at all.
+
+---
+
+## Making Metrics Actionable
+
+Every metric on a dashboard needs:
+
+- **Owner** who explains week-over-week movement
+- **Threshold** that triggers action (not panic)
+- **Linked ritual** — weekly ops review, flake burndown, incident retro
+
+Metrics without rituals become wallpaper.
+
+---
+
+## Segment, Do Not Aggregate Blindly
+
+Org-wide pass rate hides a burning payments suite. Aggregate escaped defects mask one team's regression.
+
+Segment by squad, service, or customer journey. Fix the hottest segment first.
+
+Executives need rollups; working teams need drill-down.
+
+---
+
+## Qualitative Signals Matter
+
+Surveys and conversation catch what metrics miss:
+
+- Do developers merge with confidence?
+- Do teams rerun CI "until green" as standard practice?
+- Do product managers trust release notes?
+
+If qualitative trust is low while metrics look fine, your metrics are wrong or incomplete.
+
+---
+
+## Where This Goes Wrong
+
+**Metric mandates from afar:** Leadership sets coverage targets without capacity or strategy.
+
+**Gaming:** Quarantining tests, weakening assertions, splitting suites to hide duration.
+
+**Too many KPIs:** Everything is tracked; nothing is owned.
+
+**No baseline:** Teams cannot show improvement because history was never recorded.
+
+**Blame metrics:** Used in performance reviews to punish instead of improve systems.
+
+---
+
+## The Metric Test
+
+Before adding a metric, ask:
+
+> **If this number improves, will customers or developers measurably benefit?**
+
+If the honest answer is unclear, do not put it on the executive slide.
+
+Quality metrics should simplify decisions—not create a second job of explaining why the numbers are misleading.
