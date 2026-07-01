@@ -5,6 +5,7 @@ import { BugHuntPage } from "../pages/bug-hunt.page";
 import { CommandCenterPage } from "../pages/command-center.page";
 import { FrameworkDemoPage } from "../pages/framework-demo.page";
 import { InterviewPrepPage } from "../pages/interview-prep.page";
+import { MetricsPage } from "../pages/metrics.page";
 import { PlaygroundPage } from "../pages/playground.page";
 import { SiteShellPage } from "../pages/site-shell.page";
 
@@ -17,6 +18,7 @@ export const test = base.extend<{
   interviewPrep: InterviewPrepPage;
   frameworkDemo: FrameworkDemoPage;
   playground: PlaygroundPage;
+  metrics: MetricsPage;
 }>({
   shell: async ({ page }, use) => {
     await use(new SiteShellPage(page));
@@ -41,6 +43,9 @@ export const test = base.extend<{
   },
   playground: async ({ page }, use) => {
     await use(new PlaygroundPage(page));
+  },
+  metrics: async ({ page }, use) => {
+    await use(new MetricsPage(page));
   },
 });
 

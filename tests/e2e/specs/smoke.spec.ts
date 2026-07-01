@@ -66,4 +66,10 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     await playground.submitLogin("demo", "password123");
     await playground.expectLoginSuccess();
   });
+
+  test("metrics dashboard loads with automation growth chart", async ({ metrics }) => {
+    await metrics.open();
+    await metrics.expectHeader();
+    await metrics.expectChartVisible("automation-growth");
+  });
 });
