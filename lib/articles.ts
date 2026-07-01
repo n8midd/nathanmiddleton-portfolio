@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { unstable_noStore as noStore } from "next/cache";
 
 const articlesDirectory = path.join(process.cwd(), "content", "articles");
 
@@ -24,6 +25,7 @@ function ensureArticlesDirectory() {
 }
 
 export function getAllArticles(): ArticleMeta[] {
+  noStore();
   if (!ensureArticlesDirectory()) {
     return [];
   }
@@ -50,6 +52,7 @@ export function getAllArticles(): ArticleMeta[] {
 }
 
 export function getArticleBySlug(slug: string): Article | null {
+  noStore();
   if (!ensureArticlesDirectory()) {
     return null;
   }

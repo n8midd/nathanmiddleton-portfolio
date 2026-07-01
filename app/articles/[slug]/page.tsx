@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeader } from "@/components/dashboard/section-header";
+import { articleMdxComponents } from "@/components/mdx/article-mdx-components";
 import { getAllArticles, getArticleBySlug } from "@/lib/articles";
 import { siteConfig } from "@/lib/site-config";
 
@@ -11,7 +13,9 @@ interface ArticlePageProps {
 }
 
 export async function generateStaticParams() {
-  return getAllArticles().map((article) => ({ slug: article.slug }));
+  return getAllArticles()
+    .filter((article) => article.status === "published")
+    .map((article) => ({ slug: article.slug }));
 }
 
 export async function generateMetadata({ params }: ArticlePageProps) {
@@ -28,29 +32,27 @@ export async function generateMetadata({ params }: ArticlePageProps) {
   };
 }
 
-const mdxComponents = {
-  h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h2 className="mt-8 mb-4 text-xl font-semibold" {...props} />
-  ),
-  p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
-    <p className="mb-4 leading-7 text-muted-foreground" {...props} />
-  ),
-  ul: (props: React.HTMLAttributes<HTMLUListElement>) => (
-    <ul className="mb-4 list-disc space-y-2 pl-6 text-muted-foreground" {...props} />
-  ),
-};
+const mdxComponents = articleMdxComponents;
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { slug } = await params;
   const article = getArticleBySlug(slug);
 
-  if (!article) {
+  if (!article || article.status !== "published") {
     notFound();
   }
 
   return (
-    <article className="space-y-6">
-      <Link href="/articles" className="text-sm text-[var(--status-pass)] hover:underline">
+    <article
+      className="space-y-6"
+      data-testid="article-page"
+      data-article-slug={slug}
+    >
+      <Link
+        href="/articles"
+        className="text-sm text-[var(--status-pass)] hover:underline"
+        data-testid="article-back-link"
+      >
         ← Back to articles
       </Link>
 
@@ -65,8 +67,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         ) : null}
       </div>
 
-      <div className="prose prose-invert max-w-none">
-        <MDXRemote source={article.content} components={mdxComponents} />
+      <div className="max-w-none space-y-1" data-testid="article-content">
+        <MDXRemote
+          source={article.content}
+          components={mdxComponents}
+          options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+        />
       </div>
     </article>
   );

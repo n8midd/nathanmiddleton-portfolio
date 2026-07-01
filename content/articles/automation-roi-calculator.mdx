@@ -1,0 +1,104 @@
+---
+title: "Your Automation ROI Calculator Is Probably Wrong"
+description: "Most automation ROI calculations stop at manual hours saved. Here's why that's a mistake—and how engineering leaders should actually measure the value of automation."
+date: "2026-06-30"
+status: published
+---
+
+# Your Automation ROI Calculator Is Probably Wrong
+
+After 15 years in test automation, one question comes up in every roadmap review, budget conversation, and framework pitch: *What is the ROI?*
+
+I have watched teams claim they **reduced manual regression by over 2,000 hours** per year. On paper, that number wins approvals. In practice, it never sat right with me.
+
+Hours saved is an output metric, not a business outcome. Are we actually saving money by investing in automation? If so, when does the investment break even—and does that timeline change depending on *when* automation is introduced in the product lifecycle?
+
+Those questions pushed me to dig deeper into how ROI should be modeled. Helpful perspectives exist elsewhere too—for example, [Testlio's overview of test automation ROI](https://www.testlio.com/blog/test-automation-roi)—but most teams still default to the simplest formula available.
+
+---
+
+## We Love Simple Numbers
+
+If you have worked in Quality Engineering long enough, you have probably seen some version of this equation:
+
+```text
+Manual Test Time × Number of Executions = Automation Savings
+```
+
+It sounds reasonable at first glance. It is also incomplete.
+
+The formula assumes two things that are rarely true:
+
+1. **All automated tests deliver equal value.**
+2. **Automation has upfront cost, then negligible ongoing cost.**
+
+Neither assumption holds in real engineering organizations. Automation cost typically grows over time as coverage expands and the product evolves. Common cost drivers include:
+
+- Infrastructure and environment expenses
+- Tooling and licensing (framework, CI/CD, reporting platforms)
+- Training and onboarding
+- Ongoing maintenance as the application changes
+- Debugging and stabilization of flaky or brittle tests
+
+If those costs are excluded from the ROI story, the story is incomplete.
+
+---
+
+## Automation Isn't Free—And That's Okay
+
+One of the biggest mistakes organizations make is treating maintenance like failure.
+
+I have heard this question more than once:
+
+> "Why are we spending so much time fixing automation? Didn't we already automate those tests?"
+
+The answer is straightforward: **the product changed.**
+
+Good automation evolves alongside the application. If the product is growing, the test suite should be changing too. Maintenance is not wasted effort—it is the cost of owning software.
+
+The mistake is not spending time maintaining automation. The mistake is omitting maintenance from ROI discussions and then wondering why the business loses trust in the numbers.
+
+---
+
+## Metrics That Actually Drive Value
+
+If you want to understand what test automation is truly delivering, measure outcomes that connect to delivery and risk—not just test volume.
+
+- **Risk-based coverage** of critical business flows, not raw test count
+- **Feedback-loop speed**, especially developer wait time in CI
+- **Execution efficiency**, including parallelization and pipeline duration
+- **Release frequency improvements** that reflect delivery acceleration
+- **Defect prevention and escape rates**, not just defects found in test
+- **Signal quality**, including false positives and false negatives
+- **Resource utilization efficiency**, ensuring automation reduces—not increases—operational overhead
+
+This reframes the conversation from *"How many tests did we automate?"* to *"How well does automation protect the business and accelerate delivery?"*
+
+---
+
+## Where ROI Calculations Typically Fail
+
+Across multiple teams and organizations, I have seen the same patterns repeat when ROI models break down:
+
+- Automating everything instead of prioritizing high-risk workflows
+- Automating easy or convenient tests instead of those with real business impact
+- Ignoring maintenance and infrastructure cost
+- Lacking ownership, standards, and accountability for the automation portfolio
+- Treating automation as static instead of continuously evolving software
+
+These failures are rarely about math skills. They are about scope, governance, and honest cost accounting.
+
+---
+
+## The Key Takeaway
+
+ROI in test automation is not determined by how many tests you automate. It is determined by how effectively automation reduces business risk while accelerating feedback cycles.
+
+A strong automation strategy may include fewer tests—but those tests should be:
+
+- More stable
+- More meaningful
+- More closely aligned to production risk
+- Significantly cheaper to maintain over time
+
+Treat automation ROI as a **portfolio decision**, not a spreadsheet exercise. The goal is not maximum coverage. The goal is maximum confidence per unit of engineering effort.

@@ -29,11 +29,11 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     await shell.expectSidebarLinkActive("Command Center");
   });
 
-  test("sample article renders", async ({ page }) => {
-    await page.goto("/articles/why-90-percent-automation-coverage-is-a-bad-goal");
-    await expect(
-      page.getByRole("heading", { name: "Why 90% Automation Coverage is a Bad Goal" }),
-    ).toBeVisible();
+  test("articles index and detail load", async ({ articles }) => {
+    await articles.openIndex();
+    await articles.expectHeader();
+    await articles.openArticle("why-90-percent-automation-coverage-is-a-bad-goal");
+    await articles.expectArticleContentHeading("The coverage trap");
   });
 
   test("architecture page loads", async ({ architecture }) => {
