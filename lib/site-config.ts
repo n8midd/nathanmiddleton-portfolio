@@ -190,7 +190,7 @@ export const features: SiteFeature[] = [
     label: "Technical Stack",
     description: "Why each tool was chosen — not just logos.",
     group: "Content",
-    status: "planned",
+    status: "live",
   },
   {
     id: 20,
