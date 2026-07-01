@@ -73,7 +73,7 @@ export const features: SiteFeature[] = [
     label: "Framework Demo",
     description: "Explore a real Playwright framework structure with expandable sections.",
     group: "Lab",
-    status: "planned",
+    status: "live",
   },
   {
     id: 7,

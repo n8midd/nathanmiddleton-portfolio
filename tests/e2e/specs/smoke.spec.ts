@@ -52,4 +52,11 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     await interviewPrep.clickQuestion("playwright-auto-waiting");
     await interviewPrep.expectQuestionDetail("playwright-auto-waiting", "auto-wait");
   });
+
+  test("framework demo page loads", async ({ frameworkDemo }) => {
+    await frameworkDemo.open();
+    await frameworkDemo.expectHeader();
+    await frameworkDemo.clickSection("fixtures");
+    await frameworkDemo.expectSectionDetail("fixtures", "test.fixture");
+  });
 });
