@@ -51,9 +51,9 @@ automation/       Framework Demo documentation (live tests in tests/e2e/)
 | **5** | Framework Architecture, CI/CD Pipeline Visualizer | Architecture live; Pipeline planned |
 | **6** | Articles, QA Leadership, Lessons Learned | Articles live; Leadership & Lessons planned |
 | **7** | Interactive Resume, Technical Stack | Planned |
-| **8** | Metrics Dashboard, Interview Prep | Planned |
+| **8** | Metrics Dashboard, Interview Prep | Interview Prep live; Metrics Dashboard planned |
 | **9** | Architecture Whiteboard, Exercises, Snippets | Planned |
-| **10** | Framework Demo, AI in Testing | Planned |
+| **10** | Framework Demo, AI in Testing | Framework Demo live; AI in Testing planned |
 
 ## Adding a new feature
 

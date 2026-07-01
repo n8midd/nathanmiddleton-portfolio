@@ -73,7 +73,7 @@ export const features: SiteFeature[] = [
     label: "Framework Demo",
     description: "Explore a real Playwright framework structure with expandable sections.",
     group: "Lab",
-    status: "planned",
+    status: "live",
   },
   {
     id: 7,
@@ -127,7 +127,7 @@ export const features: SiteFeature[] = [
     label: "Interview Prep",
     description: "Curated QA interview questions across automation and leadership.",
     group: "Content",
-    status: "planned",
+    status: "live",
   },
   {
     id: 13,
