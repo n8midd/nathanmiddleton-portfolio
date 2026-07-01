@@ -1,5 +1,5 @@
 import { expect, test } from "../fixtures/test.fixture";
-import { features } from "../../../lib/site-config";
+import { getNavFeatures } from "../../../lib/site-config";
 
 test.describe("@smoke Quality Engineering Lab smoke tests", () => {
   test("home page loads with command center content", async ({ commandCenter }) => {
@@ -18,7 +18,7 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
   });
 
   test("navigation routes resolve", async ({ page, shell }) => {
-    const routes = features.filter((feature) => feature.href !== "/");
+    const routes = getNavFeatures().filter((feature) => feature.href !== "/");
 
     for (const feature of routes) {
       await page.goto(feature.href);

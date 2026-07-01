@@ -10,6 +10,8 @@ export interface SiteFeature {
   description: string;
   group: NavGroup;
   status: FeatureStatus;
+  /** When false, hidden from sidebar/mobile nav and the route returns 404. Default: true */
+  showInNav?: boolean;
 }
 
 export const siteConfig = {
@@ -182,6 +184,7 @@ export const features: SiteFeature[] = [
     description: "Real stories about flaky tests, failures, and what worked.",
     group: "Leadership",
     status: "planned",
+    showInNav: false,
   },
   {
     id: 19,
@@ -211,6 +214,10 @@ export function getFeatureByHref(href: string): SiteFeature | undefined {
 
 export function getFeatureBySlug(slug: string): SiteFeature | undefined {
   return features.find((feature) => feature.slug === slug);
+}
+
+export function getNavFeatures(): SiteFeature[] {
+  return features.filter((feature) => feature.showInNav !== false);
 }
 
 export const plannedArticles = [
