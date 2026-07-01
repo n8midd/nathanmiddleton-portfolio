@@ -8,6 +8,7 @@ import { InterviewPrepPage } from "../pages/interview-prep.page";
 import { MetricsPage } from "../pages/metrics.page";
 import { AiTestingPage } from "../pages/ai-testing.page";
 import { PlaygroundPage } from "../pages/playground.page";
+import { PipelinePage } from "../pages/pipeline.page";
 import { SiteShellPage } from "../pages/site-shell.page";
 
 export const test = base.extend<{
@@ -21,6 +22,7 @@ export const test = base.extend<{
   playground: PlaygroundPage;
   metrics: MetricsPage;
   aiTesting: AiTestingPage;
+  pipeline: PipelinePage;
 }>({
   shell: async ({ page }, use) => {
     await use(new SiteShellPage(page));
@@ -51,6 +53,9 @@ export const test = base.extend<{
   },
   aiTesting: async ({ page }, use) => {
     await use(new AiTestingPage(page));
+  },
+  pipeline: async ({ page }, use) => {
+    await use(new PipelinePage(page));
   },
 });
 

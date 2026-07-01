@@ -80,4 +80,10 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     await aiTesting.generatePrompt();
     await aiTesting.expectGeneratedPromptContains("Checkout payment flow");
   });
+
+  test("pipeline page shows UI Tests stage detail", async ({ pipeline }) => {
+    await pipeline.open();
+    await pipeline.clickStep("UI Tests");
+    await pipeline.expectStepDetail("Playwright");
+  });
 });
