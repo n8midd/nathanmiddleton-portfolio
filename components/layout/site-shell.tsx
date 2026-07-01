@@ -13,14 +13,14 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { features, navGroups, siteConfig, type NavGroup } from "@/lib/site-config";
+import { features, getNavFeatures, navGroups, siteConfig, type NavGroup } from "@/lib/site-config";
 
 function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
 
   const grouped = navGroups.reduce<Record<NavGroup, typeof features>>(
     (acc, group) => {
-      acc[group] = features.filter((feature) => feature.group === group);
+      acc[group] = getNavFeatures().filter((feature) => feature.group === group);
       return acc;
     },
     {} as Record<NavGroup, typeof features>,
