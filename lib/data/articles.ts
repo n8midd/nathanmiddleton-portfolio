@@ -60,9 +60,9 @@ export const articleManifest: ArticleManifestEntry[] = [
   },
 ];
 
-export function getUnpublishedPlannedTitles(publishedTitles: string[]): string[] {
-  const published = new Set(publishedTitles);
-  return plannedArticles.filter((title) => !published.has(title));
+export function getUnpublishedPlannedTitles(publishedSlugs: string[]): string[] {
+  const published = new Set(publishedSlugs);
+  return plannedArticles.filter((article) => !published.has(article.slug)).map((article) => article.title);
 }
 
 export function getManifestEntryBySlug(slug: string): ArticleManifestEntry | undefined {

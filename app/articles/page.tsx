@@ -13,7 +13,7 @@ export const metadata = createPageMetadata(feature);
 
 export default function ArticlesPage() {
   const articles = getAllArticles().filter((article) => article.status === "published");
-  const unpublishedPlanned = getUnpublishedPlannedTitles(articles.map((article) => article.title));
+  const unpublishedPlanned = getUnpublishedPlannedTitles(articles.map((article) => article.slug));
 
   return (
     <div className="space-y-8" data-testid="articles-page">

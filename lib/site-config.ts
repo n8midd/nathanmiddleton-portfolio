@@ -214,13 +214,34 @@ export function getFeatureBySlug(slug: string): SiteFeature | undefined {
 }
 
 export const plannedArticles = [
-  "Why 90% Test Automation Coverage Is One of the Worst Goals You Can Set",
-  "When NOT to Automate: The Most Valuable Test Might Be the One You Never Write",
-  "Why Flaky Tests Destroy Engineering Teams (It's Not Just About Broken Tests)",
-  "How I Reduced a 6-Hour Test Suite to 30 Minutes (Without Deleting Quality)",
-  "Shift Left Testing Isn't About Testing Earlier—It's About Building Better Software",
-  "Building Trust in Test Automation: Why Green Builds Don't Mean You're Winning",
-  "Your Automation ROI Calculator Is Probably Wrong",
+  {
+    slug: "why-90-percent-automation-coverage-is-a-bad-goal",
+    title: "Why 90% Test Automation Coverage Is One of the Worst Goals You Can Set",
+  },
+  {
+    slug: "when-not-to-automate",
+    title: "When NOT to Automate: The Most Valuable Test Might Be the One You Never Write",
+  },
+  {
+    slug: "why-flaky-tests-destroy-engineering-teams",
+    title: "Why Flaky Tests Destroy Engineering Teams (It's Not Just About Broken Tests)",
+  },
+  {
+    slug: "how-i-reduced-test-runtime-from-6-hours-to-30-minutes",
+    title: "How I Reduced a 6-Hour Test Suite to 30 Minutes (Without Deleting Quality)",
+  },
+  {
+    slug: "shift-left-testing-explained",
+    title: "Shift Left Testing Isn't About Testing Earlier—It's About Building Better Software",
+  },
+  {
+    slug: "building-trust-in-automation",
+    title: "Building Trust in Test Automation: Why Green Builds Don't Mean You're Winning",
+  },
+  {
+    slug: "automation-roi-calculator",
+    title: "Your Automation ROI Calculator Is Probably Wrong",
+  },
 ] as const;
 
 export const playgroundDemos = [
