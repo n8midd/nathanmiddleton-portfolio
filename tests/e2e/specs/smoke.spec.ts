@@ -98,4 +98,10 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     await leadership.clickTopic("hiring-philosophy");
     await leadership.expectTopicDetail("hiring-philosophy", "What Resume Keywords Miss");
   });
+
+  test("resume page loads Sirona role detail", async ({ resume }) => {
+    await resume.open();
+    await resume.clickRole("sirona-medical");
+    await resume.expectRoleDetail("sirona-medical", "Sirona Medical");
+  });
 });

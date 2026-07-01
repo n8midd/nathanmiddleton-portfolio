@@ -100,7 +100,7 @@ export const features: SiteFeature[] = [
     label: "Interactive Resume",
     description: "Expandable career timeline with role highlights.",
     group: "Leadership",
-    status: "planned",
+    status: "live",
   },
   {
     id: 10,
