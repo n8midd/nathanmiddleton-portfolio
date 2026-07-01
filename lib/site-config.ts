@@ -82,7 +82,7 @@ export const features: SiteFeature[] = [
     label: "CI/CD Pipeline",
     description: "Interactive pipeline visualizer from commit to production.",
     group: "Lab",
-    status: "planned",
+    status: "live",
   },
   {
     id: 8,
