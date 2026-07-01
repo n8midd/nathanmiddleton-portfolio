@@ -72,4 +72,12 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     await metrics.expectHeader();
     await metrics.expectChartVisible("automation-growth");
   });
+
+  test("ai testing page generates prompt from template", async ({ aiTesting }) => {
+    await aiTesting.open();
+    await aiTesting.clickTopic("llm-test-case-generation");
+    await aiTesting.fillPromptField("featureDescription", "Checkout payment flow");
+    await aiTesting.generatePrompt();
+    await aiTesting.expectGeneratedPromptContains("Checkout payment flow");
+  });
 });

@@ -53,7 +53,7 @@ automation/       Framework Demo documentation (live tests in tests/e2e/)
 | **7** | Interactive Resume, Technical Stack | Planned |
 | **8** | Metrics Dashboard, Interview Prep | Live |
 | **9** | Architecture Whiteboard, Exercises, Snippets | Planned |
-| **10** | Framework Demo, AI in Testing | Framework Demo live; AI in Testing planned |
+| **10** | Framework Demo, AI in Testing | Live |
 
 ## Adding a new feature
 
