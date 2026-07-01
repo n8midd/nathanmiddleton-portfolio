@@ -127,7 +127,7 @@ export const features: SiteFeature[] = [
     label: "Interview Prep",
     description: "Curated QA interview questions across automation and leadership.",
     group: "Content",
-    status: "planned",
+    status: "live",
   },
   {
     id: 13,

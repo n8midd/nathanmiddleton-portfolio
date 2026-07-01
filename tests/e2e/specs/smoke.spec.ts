@@ -45,4 +45,11 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     await bugHunt.open();
     await bugHunt.expectHeader();
   });
+
+  test("interview prep page loads", async ({ interviewPrep }) => {
+    await interviewPrep.open();
+    await interviewPrep.expectHeader();
+    await interviewPrep.clickQuestion("playwright-auto-waiting");
+    await interviewPrep.expectQuestionDetail("playwright-auto-waiting", "auto-wait");
+  });
 });
