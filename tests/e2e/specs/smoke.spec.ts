@@ -59,4 +59,11 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     await frameworkDemo.clickSection("fixtures");
     await frameworkDemo.expectSectionDetail("fixtures", "test.fixture");
   });
+
+  test("playground login demo loads and accepts valid credentials", async ({ playground }) => {
+    await playground.open();
+    await playground.clickDemoCard("login");
+    await playground.submitLogin("demo", "password123");
+    await playground.expectLoginSuccess();
+  });
 });
