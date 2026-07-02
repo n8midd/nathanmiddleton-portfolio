@@ -15,6 +15,7 @@ export class CommandCenterPage extends BasePage {
   readonly metricsGrid: Locator;
   readonly skillsPanel: Locator;
   readonly quickLinks: Locator;
+  readonly coverageSection: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -22,6 +23,7 @@ export class CommandCenterPage extends BasePage {
     this.metricsGrid = page.getByTestId("command-center-metrics");
     this.skillsPanel = page.getByTestId("command-center-skills");
     this.quickLinks = page.getByTestId("quick-links");
+    this.coverageSection = page.getByTestId("automation-coverage");
   }
 
   async open() {
@@ -47,30 +49,37 @@ export class CommandCenterPage extends BasePage {
 
       await expect(card).toBeVisible();
 
-      if (metric.value) {
+      if (metric.value && metric.label !== "CI Status") {
         await expect(card.getByText(metric.value, { exact: true })).toBeVisible();
       }
 
       if (metric.hint) {
         await expect(card.getByText(metric.hint, { exact: true })).toBeVisible();
       }
+
+      await expect(card.getByTestId("data-source-live")).toBeVisible();
     }
   }
 
-  async expectBuildHealthPassing() {
-    const buildHealthCard = this.metricsGrid.getByTestId("metric-card").filter({
-      has: this.page.getByText("Build Health", { exact: true }),
-    });
-
-    await expect(buildHealthCard.locator('[data-slot="badge"]')).toHaveText("Passing");
+  async expectCiStatusLink() {
+    await expect(this.page.getByTestId("ci-status-link")).toBeVisible();
+    await expect(this.page.getByTestId("ci-status-link")).toHaveAttribute(
+      "href",
+      /github\.com\/.*\/actions/,
+    );
   }
 
   async expectCoverage() {
-    const coverage = this.page.getByTestId("automation-coverage");
-    await expect(coverage.getByText(automationCoverageLabel)).toBeVisible();
-    await expect(coverage.getByText(`${automationCoverage}%`)).toBeVisible();
+    const coverageBar = this.coverageSection.getByTestId("automation-coverage-bar");
 
-    const progressbar = coverage.getByRole("progressbar", { name: automationCoverageLabel });
+    await expect(this.coverageSection.getByTestId("demo-data-callout")).toBeVisible();
+    await expect(this.coverageSection.getByTestId("data-source-demo")).toBeVisible();
+    await expect(coverageBar.getByText(automationCoverageLabel)).toBeVisible();
+    await expect(coverageBar.getByText(`${automationCoverage}%`)).toBeVisible();
+
+    const progressbar = coverageBar.getByRole("progressbar", {
+      name: automationCoverageLabel,
+    });
     await expect(progressbar).toHaveAttribute("aria-valuenow", String(automationCoverage));
   }
 
@@ -105,7 +114,7 @@ export class CommandCenterPage extends BasePage {
 
   async expectMetricsVisibleOnMobile() {
     await expect(this.metricsGrid).toBeVisible();
-    await expect(this.page.getByText("Test Execution")).toBeVisible();
-    await expect(this.page.getByText("Build Health")).toBeVisible();
+    await expect(this.page.getByText("Unit Tests")).toBeVisible();
+    await expect(this.page.getByText("Smoke Tests")).toBeVisible();
   }
 }

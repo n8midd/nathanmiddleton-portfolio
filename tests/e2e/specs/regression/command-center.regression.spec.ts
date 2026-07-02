@@ -18,11 +18,11 @@ test.describe("@regression Command Center", () => {
     await commandCenter.expectMetrics();
   });
 
-  test("shows Passing badge on Build Health metric", async ({ commandCenter }) => {
-    await commandCenter.expectBuildHealthPassing();
+  test("shows CI Status link to GitHub Actions", async ({ commandCenter }) => {
+    await commandCenter.expectCiStatusLink();
   });
 
-  test("shows automation coverage progress bar at 92%", async ({ commandCenter }) => {
+  test("shows automation coverage with demo callout", async ({ commandCenter }) => {
     await commandCenter.expectCoverage();
   });
 

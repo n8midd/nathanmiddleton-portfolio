@@ -1,7 +1,9 @@
 import { expect, type Locator, type Page } from "@playwright/test";
 import {
+  labSummaryKpis,
   metricsCharts,
   metricsCoveragePercent,
+  metricsDemoIntro,
   metricsSummaryKpis,
   type MetricsTimeRangeId,
 } from "../../../lib/data/metrics-dashboard";
@@ -13,13 +15,17 @@ const feature = getFeatureBySlug("metrics")!;
 export class MetricsPage extends BasePage {
   readonly root: Locator;
   readonly dashboard: Locator;
+  readonly liveGrid: Locator;
   readonly summaryGrid: Locator;
+  readonly demoSection: Locator;
 
   constructor(page: Page) {
     super(page);
     this.root = page.getByTestId("metrics-page");
     this.dashboard = page.getByTestId("metrics-dashboard");
+    this.liveGrid = page.getByTestId("metrics-live-grid");
     this.summaryGrid = page.getByTestId("metrics-summary-grid");
+    this.demoSection = page.getByTestId("metrics-demo-section");
   }
 
   summaryCard(label: string): Locator {
@@ -54,12 +60,33 @@ export class MetricsPage extends BasePage {
     await expect(this.page.getByText("Coming soon", { exact: true })).toHaveCount(0);
   }
 
+  async expectLiveKpis() {
+    for (const kpi of labSummaryKpis) {
+      await expect(this.liveGrid.locator(`[data-metric-label="${kpi.label}"]`)).toBeVisible();
+      if (kpi.value) {
+        await expect(this.liveGrid.locator(`[data-metric-label="${kpi.label}"]`)).toContainText(
+          kpi.value,
+        );
+      }
+      await expect(
+        this.liveGrid.locator(`[data-metric-label="${kpi.label}"]`).getByTestId("data-source-live"),
+      ).toBeVisible();
+    }
+  }
+
+  async expectDemoCallout() {
+    await expect(this.demoSection.getByTestId("demo-data-callout")).toContainText(
+      metricsDemoIntro,
+    );
+  }
+
   async expectAllSummaryKpis() {
     for (const kpi of metricsSummaryKpis) {
       await expect(this.summaryCard(kpi.label)).toBeVisible();
       if (kpi.value) {
         await expect(this.summaryCard(kpi.label)).toContainText(kpi.value);
       }
+      await expect(this.summaryCard(kpi.label).getByTestId("data-source-demo")).toBeVisible();
     }
   }
 
@@ -67,6 +94,7 @@ export class MetricsPage extends BasePage {
     for (const chart of metricsCharts) {
       await expect(this.chartPanel(chart.id)).toBeVisible();
       await expect(this.chartPanel(chart.id)).toContainText(chart.title);
+      await expect(this.chartPanel(chart.id).getByTestId("data-source-demo")).toBeVisible();
     }
   }
 
