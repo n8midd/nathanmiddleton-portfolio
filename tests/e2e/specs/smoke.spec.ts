@@ -125,4 +125,10 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     await whiteboard.expectStrategyLayersForService("Orders");
     await whiteboard.expectDetailContains("Orders → Inventory");
   });
+
+  test("exercises page reveals login rate limiting answer", async ({ exercises }) => {
+    await exercises.open();
+    await exercises.revealAnswer();
+    await exercises.expectAnswerContains("Rate-limit");
+  });
 });

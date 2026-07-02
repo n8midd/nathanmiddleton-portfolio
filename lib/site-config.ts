@@ -148,7 +148,7 @@ export const features: SiteFeature[] = [
     label: "What Would You Test?",
     description: "Interactive testing exercises with reveal-your-answer flow.",
     group: "Tools",
-    status: "planned",
+    status: "live",
   },
   {
     id: 15,
