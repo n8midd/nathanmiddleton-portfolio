@@ -65,7 +65,14 @@ automation/       Framework Demo documentation (live tests in tests/e2e/)
 
 ## Environment variables
 
-Copy [`.env.example`](.env.example) to `.env.local` when adding API integrations (e.g. OpenAI for the Test Case Builder).
+Copy [`.env.example`](.env.example) to `.env.local` for optional integrations:
+
+| Variable | Purpose |
+|----------|---------|
+| `OPENAI_API_KEY` | Live LLM responses in **AI in Testing → Prompt Lab** (server-side only) |
+| `AI_MOCK_RESPONSE` | Set to `true` to return fixture responses without calling OpenAI (used in CI/e2e) |
+
+Prompt Lab is rate-limited to 10 requests per hour per IP. Without `OPENAI_API_KEY`, the API runs in mock mode automatically.
 
 ## Deployment
 

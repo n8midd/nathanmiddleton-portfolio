@@ -79,6 +79,14 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     await metrics.expectChartVisible("automation-growth");
   });
 
+  test("ai testing Prompt Lab runs mock LLM response", async ({ aiTesting }) => {
+    await aiTesting.open();
+    await aiTesting.openPromptLab();
+    await aiTesting.fillPromptLabField("featureDescription", "Checkout payment flow");
+    await aiTesting.runPromptLab();
+    await aiTesting.expectPromptLabResponseContains("Mock QA assistant response");
+  });
+
   test("ai testing page generates prompt from template", async ({ aiTesting }) => {
     await aiTesting.open();
     await aiTesting.clickTopic("llm-test-case-generation");

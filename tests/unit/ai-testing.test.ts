@@ -7,6 +7,10 @@ import {
   filterTopics,
   getPromptTemplateById,
   getTopicById,
+  promptLabHumanReviewNotice,
+  promptLabIntro,
+  promptQualityCriteria,
+  scorePromptOutput,
 } from "@/lib/data/ai-testing";
 
 describe("ai-testing data", () => {
@@ -38,5 +42,22 @@ describe("ai-testing data", () => {
     });
     expect(prompt).toContain("User login with MFA");
     expect(prompt).not.toContain("{{featureDescription}}");
+  });
+
+  it("scores prompt output ratings", () => {
+    const criteria = [
+      { id: "a", label: "A", description: "A" },
+      { id: "b", label: "B", description: "B" },
+    ];
+    const score = scorePromptOutput(criteria, { a: "pass", b: "fail" });
+    expect(score.passed).toBe(1);
+    expect(score.total).toBe(2);
+    expect(score.rated).toBe(2);
+  });
+
+  it("defines prompt lab messaging", () => {
+    expect(promptLabIntro).toContain("judgment");
+    expect(promptLabHumanReviewNotice).toContain("Human review");
+    expect(promptQualityCriteria.length).toBeGreaterThan(0);
   });
 });
