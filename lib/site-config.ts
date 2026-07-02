@@ -139,7 +139,7 @@ export const features: SiteFeature[] = [
     label: "Architecture Whiteboard",
     description: "Interactive microservices diagrams with test strategy overlays.",
     group: "Tools",
-    status: "planned",
+    status: "live",
   },
   {
     id: 14,

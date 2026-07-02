@@ -13,6 +13,7 @@ import { StackPage } from "../pages/stack.page";
 import { LeadershipPage } from "../pages/leadership.page";
 import { ContactPage } from "../pages/contact.page";
 import { TestCaseBuilderPage } from "../pages/test-case-builder.page";
+import { WhiteboardPage } from "../pages/whiteboard.page";
 import { ResumePage } from "../pages/resume.page";
 import { SiteShellPage } from "../pages/site-shell.page";
 
@@ -33,6 +34,7 @@ export const test = base.extend<{
   resume: ResumePage;
   contact: ContactPage;
   testCaseBuilder: TestCaseBuilderPage;
+  whiteboard: WhiteboardPage;
 }>({
   shell: async ({ page }, use) => {
     await use(new SiteShellPage(page));
@@ -81,6 +83,9 @@ export const test = base.extend<{
   },
   testCaseBuilder: async ({ page }, use) => {
     await use(new TestCaseBuilderPage(page));
+  },
+  whiteboard: async ({ page }, use) => {
+    await use(new WhiteboardPage(page));
   },
 });
 

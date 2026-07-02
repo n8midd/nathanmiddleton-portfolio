@@ -118,4 +118,11 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     await testCaseBuilder.expectAllCategoriesVisible();
     await testCaseBuilder.expectGeneratedCasesForFeature("Login Page");
   });
+
+  test("architecture whiteboard shows Orders contract tests", async ({ whiteboard }) => {
+    await whiteboard.open();
+    await whiteboard.clickService("Orders");
+    await whiteboard.expectStrategyLayersForService("Orders");
+    await whiteboard.expectDetailContains("Orders → Inventory");
+  });
 });
