@@ -47,7 +47,7 @@ automation/       Framework Demo documentation (live tests in tests/e2e/)
 | **1** | Foundation — scaffold, design system, routing, CI/CD | Complete |
 | **2** | Command Center landing, Contact | Live |
 | **3** | Testing Playground, Bug Hunt Game | Live |
-| **4** | Test Case Builder, Live API Explorer | Planned |
+| **4** | Test Case Builder, Live API Explorer | Test Case Builder live; API Explorer planned |
 | **5** | Framework Architecture, CI/CD Pipeline Visualizer | Live |
 | **6** | Articles, QA Leadership, Lessons Learned | Articles + QA Leadership live; Lessons hidden |
 | **7** | Interactive Resume, Technical Stack | Live |

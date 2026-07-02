@@ -110,4 +110,12 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     await contact.expectCtaVisible();
     await contact.expectEmailLink();
   });
+
+  test("test case builder generates cases for a feature", async ({ testCaseBuilder }) => {
+    await testCaseBuilder.open();
+    await testCaseBuilder.fillFeature("Login Page");
+    await testCaseBuilder.generate();
+    await testCaseBuilder.expectAllCategoriesVisible();
+    await testCaseBuilder.expectGeneratedCasesForFeature("Login Page");
+  });
 });
