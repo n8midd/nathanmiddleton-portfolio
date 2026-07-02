@@ -145,6 +145,44 @@ export class AiTestingPage extends BasePage {
       `Score: ${passed}/${total} passed`,
     );
   }
+
+  pageTab(tabId: "topics" | "lab"): Locator {
+    return this.page.locator(`[data-testid="ai-testing-page-tab"][data-tab-id="${tabId}"]`);
+  }
+
+  async openPromptLab() {
+    await this.pageTab("lab").click();
+    await expect(this.page.getByTestId("prompt-lab")).toBeVisible();
+  }
+
+  async openTopics() {
+    await this.pageTab("topics").click();
+    await expect(this.browser).toBeVisible();
+  }
+
+  async fillPromptLabField(fieldId: string, value: string) {
+    await this.page.getByTestId(`prompt-lab-field-${fieldId}`).fill(value);
+  }
+
+  async runPromptLab() {
+    await this.page.getByTestId("prompt-lab-run").click();
+  }
+
+  async expectPromptLabResponseContains(text: string) {
+    await expect(this.page.getByTestId("prompt-lab-response")).toBeVisible();
+    await expect(this.page.getByTestId("prompt-lab-response")).toContainText(text);
+  }
+
+  async passPromptLabCriterion(criterionId: string) {
+    await this.page.getByTestId("prompt-lab-response").scrollIntoViewIfNeeded();
+    await this.page.getByTestId(`rag-criterion-${criterionId}-pass`).click();
+  }
+
+  async expectPromptLabScore(passed: number, total: number) {
+    await expect(this.page.getByTestId("rag-eval-score").last()).toContainText(
+      `Score: ${passed}/${total} passed`,
+    );
+  }
 }
 
 export {

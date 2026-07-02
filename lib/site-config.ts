@@ -182,7 +182,7 @@ export const features: SiteFeature[] = [
     slug: "ai-testing",
     href: "/ai-testing",
     label: "AI in Testing",
-    description: "LLM-assisted testing, RAG evaluation, and synthetic data generation.",
+    description: "LLM-assisted testing topics plus a live Prompt Lab to run, compare, and rate prompts.",
     group: "Content",
     status: "live",
   },

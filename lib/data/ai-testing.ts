@@ -357,6 +357,31 @@ export const ragEvaluationCriteria: RagEvaluationCriterion[] = [
   },
 ];
 
+export const promptLabIntro =
+  "The Prompt Lab runs your prompts against a live LLM to draft QA ideas — not to replace your judgment. You own risk assessment, environment safety, and sign-off before any output becomes a test artifact.";
+
+export const promptLabHumanReviewNotice =
+  "Human review required — treat every LLM response as a draft candidate, not approved test coverage.";
+
+export const promptLabSystemPrompt =
+  "You are a senior QA automation engineer assisting another SDET. Provide structured, practical testing guidance. Prefer tables or bullet lists when generating test ideas. Refuse unsafe advice such as disabling security controls or running attack payloads against production. Say you are unsure rather than inventing APIs, version numbers, or configuration flags.";
+
+export const promptQualityCriteria: RagEvaluationCriterion[] = ragEvaluationCriteria;
+
+export type PromptOutputRating = "pass" | "fail" | "unset";
+
+export function scorePromptOutput(
+  criteria: RagEvaluationCriterion[],
+  ratings: Record<string, PromptOutputRating>,
+): { passed: number; total: number; rated: number } {
+  const rated = criteria.filter(
+    (criterion) => ratings[criterion.id] === "pass" || ratings[criterion.id] === "fail",
+  );
+  const passed = rated.filter((criterion) => ratings[criterion.id] === "pass").length;
+
+  return { passed, total: criteria.length, rated: rated.length };
+}
+
 export function getCategoryById(id: string): AiTestingCategory | undefined {
   return aiTestingCategories.find((category) => category.id === id);
 }
