@@ -2,7 +2,13 @@ import { expect, test } from "../fixtures/test.fixture";
 import { getNavFeatures } from "../../../lib/site-config";
 
 test.describe("@smoke Quality Engineering Lab smoke tests", () => {
-  test("home page loads with command center content", async ({ commandCenter }) => {
+  test("home page loads with orientation content", async ({ home }) => {
+    await home.open();
+    await home.expectHero();
+    await home.expectPriorityLinks();
+  });
+
+  test("command center dashboard loads at dedicated route", async ({ commandCenter }) => {
     await commandCenter.open();
     await commandCenter.expectHero();
     await commandCenter.expectCoverage();
@@ -26,7 +32,7 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     }
 
     await page.goto("/");
-    await shell.expectSidebarLinkActive("Command Center");
+    await shell.expectSidebarLinkActive("Home");
   });
 
   test("articles index and detail load", async ({ articles }) => {

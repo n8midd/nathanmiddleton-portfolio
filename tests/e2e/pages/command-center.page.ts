@@ -25,7 +25,7 @@ export class CommandCenterPage extends BasePage {
   }
 
   async open() {
-    await this.goto("/");
+    await this.goto("/command-center");
     await expect(this.root).toBeVisible();
   }
 

@@ -15,13 +15,19 @@ describe("site-config", () => {
     expect(siteConfig.author).toBe("Nathan Middleton");
   });
 
-  it("defines four navigation groups", () => {
-    expect(navGroups).toEqual(["Lab", "Content", "Leadership", "Tools"]);
+  it("defines five navigation groups with Overview first", () => {
+    expect(navGroups).toEqual(["Overview", "Lab", "Content", "Leadership", "Tools"]);
   });
 
-  it("registers twenty site features", () => {
-    expect(features).toHaveLength(20);
+  it("registers twenty-one site features", () => {
+    expect(features).toHaveLength(21);
     expect(features.every((feature) => feature.href.startsWith("/"))).toBe(true);
+  });
+
+  it("maps Home to root and Command Center to its own route", () => {
+    expect(getFeatureByHref("/")?.slug).toBe("home");
+    expect(getFeatureByHref("/command-center")?.slug).toBe("command-center");
+    expect(getFeatureBySlug("command-center")?.href).toBe("/command-center");
   });
 
   it("looks up features by href and slug", () => {
