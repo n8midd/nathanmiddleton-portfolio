@@ -11,6 +11,7 @@ import { PlaygroundPage } from "../pages/playground.page";
 import { PipelinePage } from "../pages/pipeline.page";
 import { StackPage } from "../pages/stack.page";
 import { LeadershipPage } from "../pages/leadership.page";
+import { ContactPage } from "../pages/contact.page";
 import { ResumePage } from "../pages/resume.page";
 import { SiteShellPage } from "../pages/site-shell.page";
 
@@ -29,6 +30,7 @@ export const test = base.extend<{
   stack: StackPage;
   leadership: LeadershipPage;
   resume: ResumePage;
+  contact: ContactPage;
 }>({
   shell: async ({ page }, use) => {
     await use(new SiteShellPage(page));
@@ -71,6 +73,9 @@ export const test = base.extend<{
   },
   resume: async ({ page }, use) => {
     await use(new ResumePage(page));
+  },
+  contact: async ({ page }, use) => {
+    await use(new ContactPage(page));
   },
 });
 

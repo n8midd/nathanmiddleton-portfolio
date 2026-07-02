@@ -20,6 +20,7 @@ export const siteConfig = {
   tagline: "Senior QA Automation Leader",
   githubUrl: "https://github.com/n8midd/nathanmiddleton-portfolio",
   linkedInUrl: "https://www.linkedin.com/in/nathan-middleton-57618713/",
+  email: "n8middleton@gmail.com",
 } as const;
 
 export const features: SiteFeature[] = [
@@ -202,7 +203,7 @@ export const features: SiteFeature[] = [
     label: "Contact",
     description: "Let's talk about building frameworks, leading teams, and release confidence.",
     group: "Leadership",
-    status: "planned",
+    status: "live",
   },
 ];
 
