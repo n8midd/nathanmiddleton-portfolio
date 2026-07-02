@@ -157,7 +157,7 @@ export const features: SiteFeature[] = [
     label: "Live API Explorer",
     description: "Send requests to demo REST endpoints and inspect responses.",
     group: "Tools",
-    status: "planned",
+    status: "live",
   },
   {
     id: 16,
