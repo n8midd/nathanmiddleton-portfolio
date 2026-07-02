@@ -1,6 +1,6 @@
 export type FeatureStatus = "planned" | "live";
 
-export type NavGroup = "Lab" | "Content" | "Leadership" | "Tools";
+export type NavGroup = "Overview" | "Lab" | "Content" | "Leadership" | "Tools";
 
 export interface SiteFeature {
   id: number;
@@ -25,11 +25,20 @@ export const siteConfig = {
 
 export const features: SiteFeature[] = [
   {
+    id: 0,
+    slug: "home",
+    href: "/",
+    label: "Home",
+    description: "Orientation page explaining the Quality Engineering Lab and where to start.",
+    group: "Overview",
+    status: "live",
+  },
+  {
     id: 1,
     slug: "command-center",
-    href: "/",
+    href: "/command-center",
     label: "Command Center",
-    description: "Interactive QA dashboard landing page with live-style metrics.",
+    description: "Interactive QA dashboard with live-style metrics.",
     group: "Lab",
     status: "live",
   },
@@ -207,7 +216,7 @@ export const features: SiteFeature[] = [
   },
 ];
 
-export const navGroups: NavGroup[] = ["Lab", "Content", "Leadership", "Tools"];
+export const navGroups: NavGroup[] = ["Overview", "Lab", "Content", "Leadership", "Tools"];
 
 export function getFeatureByHref(href: string): SiteFeature | undefined {
   return features.find((feature) => feature.href === href);

@@ -30,7 +30,7 @@ export function ComingSoon({ feature }: ComingSoonProps) {
           <p>
             Explore other areas from the{" "}
             <Link href="/" className="text-[var(--status-pass)] underline-offset-4 hover:underline">
-              Command Center
+              Home
             </Link>{" "}
             or browse the navigation for planned features.
           </p>

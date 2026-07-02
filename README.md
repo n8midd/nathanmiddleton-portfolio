@@ -12,7 +12,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000) for the Home page. The Command Center dashboard lives at `/command-center`.
 
 ## Scripts
 
@@ -45,7 +45,7 @@ automation/       Framework Demo documentation (live tests in tests/e2e/)
 | Phase | Features | Status |
 |-------|----------|--------|
 | **1** | Foundation — scaffold, design system, routing, CI/CD | Complete |
-| **2** | Command Center landing, Contact | Live |
+| **2** | Home landing, Command Center, Contact | Live |
 | **3** | Testing Playground, Bug Hunt Game | Live |
 | **4** | Test Case Builder, Live API Explorer | Live |
 | **5** | Framework Architecture, CI/CD Pipeline Visualizer | Live |
