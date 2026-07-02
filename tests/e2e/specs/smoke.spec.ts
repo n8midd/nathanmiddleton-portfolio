@@ -125,4 +125,17 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     await whiteboard.expectStrategyLayersForService("Orders");
     await whiteboard.expectDetailContains("Orders → Inventory");
   });
+
+  test("exercises page reveals login rate limiting answer", async ({ exercises }) => {
+    await exercises.open();
+    await exercises.revealAnswer();
+    await exercises.expectAnswerContains("Rate-limit");
+  });
+
+  test("api explorer GET users returns email in response", async ({ apiExplorer }) => {
+    await apiExplorer.open();
+    await apiExplorer.sendRequest();
+    await apiExplorer.expectResponseStatus("200");
+    await apiExplorer.expectResponseBodyContains("@example.com");
+  });
 });

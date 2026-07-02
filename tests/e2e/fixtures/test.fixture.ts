@@ -14,6 +14,8 @@ import { LeadershipPage } from "../pages/leadership.page";
 import { ContactPage } from "../pages/contact.page";
 import { TestCaseBuilderPage } from "../pages/test-case-builder.page";
 import { WhiteboardPage } from "../pages/whiteboard.page";
+import { ExercisesPage } from "../pages/exercises.page";
+import { ApiExplorerPage } from "../pages/api-explorer.page";
 import { ResumePage } from "../pages/resume.page";
 import { SiteShellPage } from "../pages/site-shell.page";
 
@@ -35,6 +37,8 @@ export const test = base.extend<{
   contact: ContactPage;
   testCaseBuilder: TestCaseBuilderPage;
   whiteboard: WhiteboardPage;
+  exercises: ExercisesPage;
+  apiExplorer: ApiExplorerPage;
 }>({
   shell: async ({ page }, use) => {
     await use(new SiteShellPage(page));
@@ -86,6 +90,12 @@ export const test = base.extend<{
   },
   whiteboard: async ({ page }, use) => {
     await use(new WhiteboardPage(page));
+  },
+  exercises: async ({ page }, use) => {
+    await use(new ExercisesPage(page));
+  },
+  apiExplorer: async ({ page }, use) => {
+    await use(new ApiExplorerPage(page));
   },
 });
 
