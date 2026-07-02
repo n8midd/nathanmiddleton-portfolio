@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type { DataSource } from "@/lib/data/data-source";
+import { DataSourceBadge } from "./data-source-badge";
 
 interface MetricCardProps {
   label: string;
@@ -9,6 +11,7 @@ interface MetricCardProps {
   className?: string;
   testId?: string;
   dataMetricLabel?: string;
+  dataSource?: DataSource;
 }
 
 export function MetricCard({
@@ -19,6 +22,7 @@ export function MetricCard({
   className,
   testId,
   dataMetricLabel,
+  dataSource,
 }: MetricCardProps) {
   return (
     <Card
@@ -28,9 +32,12 @@ export function MetricCard({
       aria-label={label}
     >
       <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
-          {label}
-        </CardTitle>
+        <div className="flex items-center justify-between gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground">
+            {label}
+          </CardTitle>
+          {dataSource ? <DataSourceBadge source={dataSource} /> : null}
+        </div>
       </CardHeader>
       <CardContent className="space-y-1">
         {value ? (

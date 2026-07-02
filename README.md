@@ -24,6 +24,7 @@ Open [http://localhost:3000](http://localhost:3000) for the Home page. The Comma
 | `npm run lint` | ESLint |
 | `npm run typecheck` | TypeScript check |
 | `npm run test` | Vitest unit tests |
+| `npm run generate:stats` | Refresh live test counts written to `lib/data/lab-test-stats.generated.ts` |
 | `npm run test:e2e` | Playwright end-to-end tests (smoke + regression) |
 | `npm run test:e2e:smoke` | Smoke tests only |
 | `npm run test:e2e:regression` | Regression tests only |
@@ -75,6 +76,8 @@ Deploy to [Vercel](https://vercel.com) by connecting the GitHub repository:
 3. Vercel auto-detects Next.js — no extra config required
 
 CI runs on every push and pull request via [`.github/workflows/ci.yml`](.github/workflows/ci.yml): lint, typecheck, unit tests, build, and Playwright e2e.
+
+Command Center and Metrics Dashboard show **live test counts** from this repository (regenerated on each `npm run build` via `npm run generate:stats`). Historical charts and enterprise-style KPIs on the Metrics page are **illustrative demo data** only.
 
 ## License
 

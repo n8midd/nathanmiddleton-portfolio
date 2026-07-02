@@ -1,3 +1,7 @@
+import { labTestStats } from "@/lib/data/lab-test-stats.generated";
+import { siteConfig } from "@/lib/site-config";
+import type { DataSource } from "@/lib/data/data-source";
+
 type MetricStatus = "passing" | "failing" | "flaky" | "neutral";
 
 export interface CommandCenterMetric {
@@ -5,15 +9,38 @@ export interface CommandCenterMetric {
   value?: string;
   hint?: string;
   status?: MetricStatus;
+  dataSource: DataSource;
 }
 
 export const commandCenterExperience = "18+ years experience";
 
+export const commandCenterCiActionsUrl = `${siteConfig.githubUrl}/actions`;
+
 export const commandCenterMetrics: CommandCenterMetric[] = [
-  { label: "Test Execution", value: "15,432", hint: "Last 30 days" },
-  { label: "Frameworks Built", value: "12+", hint: "Across enterprise teams" },
-  { label: "Production Escapes", value: "↓ 78%", hint: "Year over year" },
-  { label: "Build Health", status: "passing" },
+  {
+    label: "Unit Tests",
+    value: String(labTestStats.unitTests),
+    hint: `Vitest · ${labTestStats.unitTestFiles} files`,
+    dataSource: "live",
+  },
+  {
+    label: "E2E Tests",
+    value: String(labTestStats.e2eTests),
+    hint: `Playwright · ${labTestStats.e2eSpecFiles} spec files`,
+    dataSource: "live",
+  },
+  {
+    label: "Smoke Tests",
+    value: String(labTestStats.e2eSmokeTests),
+    hint: "Playwright @smoke",
+    dataSource: "live",
+  },
+  {
+    label: "CI Status",
+    value: "See GitHub",
+    hint: "Workflow status on GitHub Actions",
+    dataSource: "live",
+  },
 ];
 
 export const commandCenterSkills = [
@@ -32,6 +59,11 @@ export const commandCenterSkills = [
 export const automationCoverage = 92;
 
 export const automationCoverageLabel = "Automation Coverage";
+
+export const automationCoverageIsDemo = true;
+
+export const commandCenterCoverageDemoIntro =
+  "Illustrative coverage target below — demo data for UI purposes, not production telemetry.";
 
 export const commandCenterQuickLinks = [
   {

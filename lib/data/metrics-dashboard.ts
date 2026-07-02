@@ -1,3 +1,6 @@
+import { labTestStats } from "@/lib/data/lab-test-stats.generated";
+import type { DataSource } from "@/lib/data/data-source";
+
 export type MetricStatus = "passing" | "failing" | "flaky" | "neutral";
 
 export type MetricsChartType = "line" | "bar" | "area" | "progress";
@@ -7,6 +10,7 @@ export interface MetricsSummaryKpi {
   value?: string;
   hint?: string;
   status?: MetricStatus;
+  dataSource: DataSource;
 }
 
 export interface MetricsChartPoint {
@@ -20,6 +24,7 @@ export interface MetricsChartConfig {
   description: string;
   type: MetricsChartType;
   data: MetricsChartPoint[];
+  dataSource: DataSource;
   /** Used by progress-type charts */
   progressValue?: number;
   progressLabel?: string;
@@ -33,13 +38,49 @@ export interface MetricsTimeRange {
   executionHistory: MetricsChartPoint[];
 }
 
+export const metricsDemoIntro =
+  "Illustrative enterprise metrics below — sample data for UI demo purposes, not production telemetry.";
+
+export const labSummaryKpis: MetricsSummaryKpi[] = [
+  {
+    label: "Unit Tests",
+    value: String(labTestStats.unitTests),
+    hint: `Vitest · ${labTestStats.unitTestFiles} files`,
+    dataSource: "live",
+  },
+  {
+    label: "E2E Tests",
+    value: String(labTestStats.e2eTests),
+    hint: `Playwright · ${labTestStats.e2eSpecFiles} spec files`,
+    dataSource: "live",
+  },
+  {
+    label: "Smoke Tests",
+    value: String(labTestStats.e2eSmokeTests),
+    hint: "Playwright @smoke",
+    dataSource: "live",
+  },
+  {
+    label: "Regression Tests",
+    value: String(labTestStats.e2eRegressionTests),
+    hint: "Playwright @regression",
+    dataSource: "live",
+  },
+  {
+    label: "Total Tests",
+    value: String(labTestStats.totalTests),
+    hint: "Unit + E2E in this repository",
+    dataSource: "live",
+  },
+];
+
 export const metricsSummaryKpis: MetricsSummaryKpi[] = [
-  { label: "Pass Rate", value: "98.6%", hint: "Last 30 days", status: "passing" },
-  { label: "Total Runs", value: "15,432", hint: "Last 30 days" },
-  { label: "Flaky Tests", value: "12", hint: "Active quarantine", status: "flaky" },
-  { label: "Avg Runtime", value: "28m", hint: "Full regression suite" },
-  { label: "MTTR", value: "2.4h", hint: "Pipeline recovery" },
-  { label: "Build Health", status: "passing" },
+  { label: "Pass Rate", value: "98.6%", hint: "Last 30 days", status: "passing", dataSource: "demo" },
+  { label: "Total Runs", value: "15,432", hint: "Last 30 days", dataSource: "demo" },
+  { label: "Flaky Tests", value: "12", hint: "Active quarantine", status: "flaky", dataSource: "demo" },
+  { label: "Avg Runtime", value: "28m", hint: "Full regression suite", dataSource: "demo" },
+  { label: "MTTR", value: "2.4h", hint: "Pipeline recovery", dataSource: "demo" },
+  { label: "Build Health", status: "passing", dataSource: "demo" },
 ];
 
 export const metricsTimeRanges: MetricsTimeRange[] = [
@@ -83,6 +124,7 @@ export const metricsCharts: MetricsChartConfig[] = [
     title: "Automation Growth",
     description: "Coverage percentage trend over the last six months.",
     type: "area",
+    dataSource: "demo",
     data: [
       { name: "Oct", value: 78 },
       { name: "Nov", value: 82 },
@@ -97,6 +139,7 @@ export const metricsCharts: MetricsChartConfig[] = [
     title: "Flaky Tests",
     description: "Quarantined flaky test count trending down.",
     type: "line",
+    dataSource: "demo",
     data: [
       { name: "Oct", value: 34 },
       { name: "Nov", value: 28 },
@@ -111,6 +154,7 @@ export const metricsCharts: MetricsChartConfig[] = [
     title: "Average Runtime",
     description: "Mean execution time in minutes per suite.",
     type: "bar",
+    dataSource: "demo",
     data: [
       { name: "Smoke", value: 4 },
       { name: "Regression", value: 28 },
@@ -124,6 +168,7 @@ export const metricsCharts: MetricsChartConfig[] = [
     title: "Execution History",
     description: "Daily test runs over the selected time range.",
     type: "area",
+    dataSource: "demo",
     data: metricsTimeRanges[1].executionHistory,
   },
   {
@@ -131,6 +176,7 @@ export const metricsCharts: MetricsChartConfig[] = [
     title: "Coverage",
     description: "Current automation coverage against critical user journeys.",
     type: "progress",
+    dataSource: "demo",
     data: [],
     progressValue: 92,
     progressLabel: "Automation Coverage",
@@ -140,6 +186,7 @@ export const metricsCharts: MetricsChartConfig[] = [
     title: "Failed Tests",
     description: "Failures grouped by category in the last sprint.",
     type: "bar",
+    dataSource: "demo",
     data: [
       { name: "UI", value: 8 },
       { name: "API", value: 5 },
@@ -153,6 +200,7 @@ export const metricsCharts: MetricsChartConfig[] = [
     title: "MTTR",
     description: "Mean time to recovery for pipeline incidents (hours).",
     type: "line",
+    dataSource: "demo",
     data: [
       { name: "Oct", value: 5.2 },
       { name: "Nov", value: 4.1 },
@@ -167,6 +215,7 @@ export const metricsCharts: MetricsChartConfig[] = [
     title: "Production Defects",
     description: "Escaped defects found in production per month.",
     type: "line",
+    dataSource: "demo",
     data: [
       { name: "Oct", value: 9 },
       { name: "Nov", value: 7 },
@@ -185,7 +234,7 @@ export function getChartById(id: string): MetricsChartConfig | undefined {
 }
 
 export function getSummaryKpiByLabel(label: string): MetricsSummaryKpi | undefined {
-  return metricsSummaryKpis.find((kpi) => kpi.label === label);
+  return [...labSummaryKpis, ...metricsSummaryKpis].find((kpi) => kpi.label === label);
 }
 
 export function getTimeRangeById(id: MetricsTimeRangeId): MetricsTimeRange | undefined {

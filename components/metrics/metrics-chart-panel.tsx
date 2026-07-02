@@ -14,6 +14,7 @@ import {
   YAxis,
 } from "recharts";
 import { ProgressBar } from "@/components/dashboard/progress-bar";
+import { DataSourceBadge } from "@/components/dashboard/data-source-badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { MetricsChartConfig } from "@/lib/data/metrics-dashboard";
 
@@ -58,8 +59,13 @@ export function MetricsChartPanel({ chart, dataOverride, activeRange }: MetricsC
       data-active-range={activeRange}
     >
       <CardHeader className="pb-2">
-        <CardTitle className="text-base">{chart.title}</CardTitle>
-        <p className="text-sm text-muted-foreground">{chart.description}</p>
+        <div className="flex items-start justify-between gap-2">
+          <div className="space-y-1">
+            <CardTitle className="text-base">{chart.title}</CardTitle>
+            <p className="text-sm text-muted-foreground">{chart.description}</p>
+          </div>
+          <DataSourceBadge source={chart.dataSource} />
+        </div>
       </CardHeader>
       <CardContent>
         {chart.type === "progress" ? (

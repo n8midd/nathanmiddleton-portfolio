@@ -21,7 +21,15 @@ test.describe("@regression Metrics Dashboard", () => {
     await metrics.expectNoComingSoon();
   });
 
-  test("lists all summary KPIs from shared data", async ({ metrics }) => {
+  test("lists live repository KPIs", async ({ metrics }) => {
+    await metrics.expectLiveKpis();
+  });
+
+  test("shows demo data callout in enterprise section", async ({ metrics }) => {
+    await metrics.expectDemoCallout();
+  });
+
+  test("lists all demo summary KPIs from shared data", async ({ metrics }) => {
     await metrics.expectAllSummaryKpis();
   });
 

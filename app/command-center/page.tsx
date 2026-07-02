@@ -1,12 +1,15 @@
 import Link from "next/link";
+import { DemoDataCallout } from "@/components/dashboard/demo-data-callout";
+import { DataSourceBadge } from "@/components/dashboard/data-source-badge";
 import { MetricCard } from "@/components/dashboard/metric-card";
 import { ProgressBar } from "@/components/dashboard/progress-bar";
 import { SectionHeader } from "@/components/dashboard/section-header";
-import { StatusBadge } from "@/components/dashboard/status-badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   automationCoverage,
   automationCoverageLabel,
+  commandCenterCiActionsUrl,
+  commandCenterCoverageDemoIntro,
   commandCenterExperience,
   commandCenterMetrics,
   commandCenterQuickLinks,
@@ -35,21 +38,37 @@ export default function CommandCenterPage() {
           <MetricCard
             key={metric.label}
             label={metric.label}
-            value={metric.value}
+            value={metric.label === "CI Status" ? undefined : metric.value}
             hint={metric.hint}
             testId="metric-card"
+            dataSource={metric.dataSource}
           >
-            {metric.status ? <StatusBadge status={metric.status} /> : null}
+            {metric.label === "CI Status" ? (
+              <a
+                href={commandCenterCiActionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-2xl font-semibold tracking-tight text-[var(--status-pass)] underline-offset-4 hover:underline"
+                data-testid="ci-status-link"
+              >
+                {metric.value}
+              </a>
+            ) : null}
           </MetricCard>
         ))}
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <div className="rounded-lg border border-border/60 bg-card/50 p-6">
+        <div className="space-y-4 rounded-lg border border-border/60 bg-card/50 p-6" data-testid="automation-coverage">
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-sm font-medium text-muted-foreground">Automation coverage</p>
+            <DataSourceBadge source="demo" />
+          </div>
+          <DemoDataCallout message={commandCenterCoverageDemoIntro} />
           <ProgressBar
             label={automationCoverageLabel}
             value={automationCoverage}
-            testId="automation-coverage"
+            testId="automation-coverage-bar"
           />
         </div>
         <div
