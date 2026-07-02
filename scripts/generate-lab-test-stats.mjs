@@ -1,67 +1,126 @@
 import { execSync } from "node:child_process";
-import { readdirSync, writeFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const root = process.cwd();
 const unitDir = join(root, "tests/unit");
+const e2eSpecsDir = join(root, "tests/e2e/specs");
 
-function parsePlaywrightList(output) {
-  const lines = output.trim().split("\n");
-  const totalLine = [...lines].reverse().find((line) => line.startsWith("Total:"));
-  const match = totalLine?.match(/Total: (\d+) tests in (\d+) files?/);
-  if (!match) {
-    throw new Error(`Could not parse Playwright list output:\n${output}`);
+/** Count Vitest/Playwright test cases in a file without executing the suite. */
+function countTestCasesInSource(content) {
+  const matches = content.match(/(?:^|\s)(?:it|test)(?:\.[a-z]+)?\s*\(/gm);
+  return matches?.length ?? 0;
+}
+
+function listFilesRecursive(dir, predicate) {
+  if (!existsSync(dir)) {
+    return [];
+  }
+
+  const results = [];
+
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const fullPath = join(dir, entry.name);
+    if (entry.isDirectory()) {
+      results.push(...listFilesRecursive(fullPath, predicate));
+    } else if (predicate(fullPath)) {
+      results.push(fullPath);
+    }
+  }
+
+  return results;
+}
+
+function countUnitTestsFromSources() {
+  const files = readdirSync(unitDir).filter((file) => file.endsWith(".test.ts"));
+  let tests = 0;
+
+  for (const file of files) {
+    const content = readFileSync(join(unitDir, file), "utf8");
+    tests += countTestCasesInSource(content);
+  }
+
+  return { tests, files: files.length };
+}
+
+function countE2eTestsFromSources() {
+  const allSpecFiles = listFilesRecursive(e2eSpecsDir, (path) => path.endsWith(".spec.ts"));
+  const smokeFile = join(e2eSpecsDir, "smoke.spec.ts");
+
+  let e2eTests = 0;
+  let e2eSmokeTests = 0;
+  let e2eRegressionTests = 0;
+
+  for (const file of allSpecFiles) {
+    const content = readFileSync(file, "utf8");
+    const count = countTestCasesInSource(content);
+    e2eTests += count;
+
+    if (file === smokeFile) {
+      e2eSmokeTests += count;
+    } else if (file.includes("/regression/")) {
+      e2eRegressionTests += count;
+    }
   }
 
   return {
-    tests: Number(match[1]),
-    files: Number(match[2]),
+    tests: e2eTests,
+    files: allSpecFiles.length,
+    smoke: e2eSmokeTests,
+    regression: e2eRegressionTests,
   };
 }
 
-function countUnitTestFiles() {
-  return readdirSync(unitDir).filter((file) => file.endsWith(".test.ts")).length;
-}
-
-function countVitestTests() {
-  const result = execSync("npx vitest run", {
-    cwd: root,
-    encoding: "utf8",
-  });
-
-  const match = result.match(/Tests\s+(\d+) passed/);
-  if (!match) {
-    throw new Error(`Could not parse Vitest output:\n${result}`);
+function tryPlaywrightList(grep) {
+  const playwrightBin = join(root, "node_modules", ".bin", "playwright");
+  if (!existsSync(playwrightBin)) {
+    return null;
   }
 
-  return Number(match[1]);
+  try {
+    const grepArg = grep ? ` --grep ${grep}` : "";
+    const output = execSync(`"${playwrightBin}" test${grepArg} --list 2>&1`, {
+      cwd: root,
+      encoding: "utf8",
+    });
+    const totalLine = [...output.trim().split("\n")]
+      .reverse()
+      .find((line) => line.startsWith("Total:"));
+    const match = totalLine?.match(/Total: (\d+) tests in (\d+) files?/);
+    if (!match) {
+      return null;
+    }
+
+    return {
+      tests: Number(match[1]),
+      files: Number(match[2]),
+    };
+  } catch {
+    return null;
+  }
 }
 
-function listPlaywrightTests(grep) {
-  const grepArg = grep ? ` --grep ${grep}` : "";
-  const output = execSync(`npx playwright test${grepArg} --list 2>&1`, {
-    cwd: root,
-    encoding: "utf8",
-  });
+const unit = countUnitTestsFromSources();
+const e2eFromSources = countE2eTestsFromSources();
 
-  return parsePlaywrightList(output);
-}
+const e2eListed = tryPlaywrightList();
+const smokeListed = tryPlaywrightList("@smoke");
+const regressionListed = tryPlaywrightList("@regression");
 
-const unitTests = countVitestTests();
-const unitTestFiles = countUnitTestFiles();
-const e2e = listPlaywrightTests();
-const smoke = listPlaywrightTests("@smoke");
-const regression = listPlaywrightTests("@regression");
+const e2eTests = e2eListed?.tests ?? e2eFromSources.tests;
+const e2eSpecFiles = e2eListed?.files ?? e2eFromSources.files;
+const e2eSmokeTests = smokeListed?.tests ?? e2eFromSources.smoke;
+const e2eRegressionTests = regressionListed?.tests ?? e2eFromSources.regression;
 
 const stats = {
   generatedAt: new Date().toISOString(),
-  unitTests,
-  unitTestFiles,
-  e2eTests: e2e.tests,
-  e2eSpecFiles: e2e.files,
-  e2eSmokeTests: smoke.tests,
-  e2eRegressionTests: regression.tests,
-  totalTests: unitTests + e2e.tests,
+  unitTests: unit.tests,
+  unitTestFiles: unit.files,
+  e2eTests,
+  e2eSpecFiles,
+  e2eSmokeTests,
+  e2eRegressionTests,
+  totalTests: unit.tests + e2eTests,
 };
 
 const outPath = join(root, "lib/data/lab-test-stats.generated.ts");
