@@ -104,4 +104,10 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     await resume.clickRole("sirona-medical");
     await resume.expectRoleDetail("sirona-medical", "Sirona Medical");
   });
+
+  test("contact page loads offerings and email link", async ({ contact }) => {
+    await contact.open();
+    await contact.expectCtaVisible();
+    await contact.expectEmailLink();
+  });
 });
