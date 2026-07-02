@@ -166,7 +166,7 @@ export const features: SiteFeature[] = [
     label: "Code Snippet Library",
     description: "Searchable Playwright, Selenium, and CI/CD code examples.",
     group: "Tools",
-    status: "planned",
+    status: "live",
   },
   {
     id: 17,

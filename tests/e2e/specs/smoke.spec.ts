@@ -138,4 +138,10 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     await apiExplorer.expectResponseStatus("200");
     await apiExplorer.expectResponseBodyContains("@example.com");
   });
+
+  test("snippets page shows Playwright page.goto example", async ({ snippets }) => {
+    await snippets.open();
+    await snippets.clickSnippet("playwright-page-object");
+    await snippets.expectSnippetDetail("playwright-page-object", "page.goto");
+  });
 });

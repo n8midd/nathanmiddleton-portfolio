@@ -52,7 +52,7 @@ automation/       Framework Demo documentation (live tests in tests/e2e/)
 | **6** | Articles, QA Leadership, Lessons Learned | Articles + QA Leadership live; Lessons hidden |
 | **7** | Interactive Resume, Technical Stack | Live |
 | **8** | Metrics Dashboard, Interview Prep | Live |
-| **9** | Architecture Whiteboard, Exercises, Snippets | Architecture Whiteboard + What Would You Test live; Snippets planned |
+| **9** | Architecture Whiteboard, Exercises, Snippets | Live |
 | **10** | Framework Demo, AI in Testing | Live |
 
 ## Adding a new feature
