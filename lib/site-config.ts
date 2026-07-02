@@ -58,7 +58,7 @@ export const features: SiteFeature[] = [
     label: "Test Case Builder",
     description: "Generate positive, negative, boundary, and security test cases interactively.",
     group: "Tools",
-    status: "planned",
+    status: "live",
   },
   {
     id: 5,
