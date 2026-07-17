@@ -11,12 +11,12 @@ export interface LabTestStats {
 }
 
 export const labTestStats: LabTestStats = {
-  "generatedAt": "2026-07-02T13:47:39.122Z",
-  "unitTests": 115,
-  "unitTestFiles": 31,
-  "e2eTests": 336,
-  "e2eSpecFiles": 21,
-  "e2eSmokeTests": 23,
-  "e2eRegressionTests": 313,
-  "totalTests": 451
+  "generatedAt": "2026-07-17T20:37:16.197Z",
+  "unitTests": 120,
+  "unitTestFiles": 32,
+  "e2eTests": 348,
+  "e2eSpecFiles": 22,
+  "e2eSmokeTests": 24,
+  "e2eRegressionTests": 324,
+  "totalTests": 468
 };

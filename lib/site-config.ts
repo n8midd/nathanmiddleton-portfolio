@@ -133,6 +133,16 @@ export const features: SiteFeature[] = [
     status: "live",
   },
   {
+    id: 21,
+    slug: "artillery",
+    href: "/artillery",
+    label: "Artillery Performance",
+    description:
+      "Browser performance results from Artillery's Playwright engine, plus how the suite is wired in this repo.",
+    group: "Lab",
+    status: "live",
+  },
+  {
     id: 12,
     slug: "interview-prep",
     href: "/interview-prep",

@@ -10,11 +10,14 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "generate:stats": "node scripts/generate-lab-test-stats.mjs",
+    "generate:artillery": "node scripts/generate-artillery-results.mjs",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:smoke": "playwright test --grep @smoke",
     "test:e2e:regression": "playwright test --grep @regression",
-    "test:e2e:ui": "playwright test --ui"
+    "test:e2e:ui": "playwright test --ui",
+    "test:perf": "mkdir -p tests/performance/artillery/reports && artillery run tests/performance/artillery/browser-load.yml --output tests/performance/artillery/reports/latest.json",
+    "test:perf:update": "npm run test:perf && npm run generate:artillery"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
@@ -39,6 +42,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "artillery": "^2.0.33",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
     "eslint-config-prettier": "^10.1.8",

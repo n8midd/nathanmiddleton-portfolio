@@ -19,9 +19,16 @@ describe("site-config", () => {
     expect(navGroups).toEqual(["Overview", "Lab", "Content", "Leadership", "Tools"]);
   });
 
-  it("registers twenty-one site features", () => {
-    expect(features).toHaveLength(21);
+  it("registers twenty-two site features", () => {
+    expect(features).toHaveLength(22);
     expect(features.every((feature) => feature.href.startsWith("/"))).toBe(true);
+  });
+
+  it("registers Artillery Performance in the Lab group", () => {
+    const artillery = getFeatureBySlug("artillery");
+    expect(artillery?.href).toBe("/artillery");
+    expect(artillery?.group).toBe("Lab");
+    expect(artillery?.status).toBe("live");
   });
 
   it("maps Home to root and Command Center to its own route", () => {

@@ -1,0 +1,28 @@
+# Artillery Playwright browser load — light local demo profile.
+# Requires the app on config.target (npm run build && npm run start).
+config:
+  target: "http://127.0.0.1:3000"
+  phases:
+    - name: light-load
+      duration: 30
+      arrivalCount: 9
+  engines:
+    playwright: {}
+  processor: "./flows.ts"
+  ensure:
+    thresholds:
+      - "vusers.failed: 0"
+
+scenarios:
+  - name: homeBrowse
+    engine: playwright
+    weight: 1
+    testFunction: "homeBrowse"
+  - name: playgroundLogin
+    engine: playwright
+    weight: 1
+    testFunction: "playgroundLogin"
+  - name: labPageLoad
+    engine: playwright
+    weight: 1
+    testFunction: "labPageLoad"

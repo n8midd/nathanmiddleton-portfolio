@@ -101,7 +101,8 @@ export const ciPipelineSteps: CiPipelineStep[] = [
       "Fail on sustained threshold breaches, not single spikes",
       "Run perf checks on a schedule if they are too slow for every PR",
     ],
-    repoNote: "Illustrative stage—typical enterprise extension not yet in this repo's CI.",
+    repoNote:
+      "Artillery Playwright suite lives in tests/performance/artillery — run via npm run test:perf (not every PR).",
   },
   {
     id: "deploy",

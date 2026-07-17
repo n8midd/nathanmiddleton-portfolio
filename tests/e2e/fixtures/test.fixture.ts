@@ -1,6 +1,7 @@
 import { test as base } from "@playwright/test";
 import { ArchitecturePage } from "../pages/architecture.page";
 import { ArticlesPage } from "../pages/articles.page";
+import { ArtilleryPage } from "../pages/artillery.page";
 import { BugHuntPage } from "../pages/bug-hunt.page";
 import { HomePage } from "../pages/home.page";
 import { CommandCenterPage } from "../pages/command-center.page";
@@ -33,6 +34,7 @@ export const test = base.extend<{
   playground: PlaygroundPage;
   metrics: MetricsPage;
   aiTesting: AiTestingPage;
+  artillery: ArtilleryPage;
   pipeline: PipelinePage;
   stack: StackPage;
   leadership: LeadershipPage;
@@ -76,6 +78,9 @@ export const test = base.extend<{
   },
   aiTesting: async ({ page }, use) => {
     await use(new AiTestingPage(page));
+  },
+  artillery: async ({ page }, use) => {
+    await use(new ArtilleryPage(page));
   },
   pipeline: async ({ page }, use) => {
     await use(new PipelinePage(page));

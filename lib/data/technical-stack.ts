@@ -260,6 +260,26 @@ export const stackTools: StackTool[] = [
     ],
   },
   {
+    id: "artillery-playwright",
+    categoryId: "api-performance",
+    name: "Artillery + Playwright",
+    tagline: "Browser load testing with Core Web Vitals under concurrency.",
+    rationale:
+      "HTTP load tools miss front-end paint and interaction cost. Artillery's Playwright engine runs real Chromium virtual users against the same journeys as functional e2e, capturing LCP/FCP while concurrency rises. This lab keeps a light local suite and surfaces results on /artillery.",
+    highlights: [
+      "Reuse Playwright flows and data-testid locators for perf scenarios",
+      "Collect session length plus Web Vitals per URL",
+      "Threshold on vusers.failed so broken journeys fail the run",
+      "Run on demand locally — skip heavy browser load on every PR",
+    ],
+    weaknesses: [
+      "Each VU needs a browser — memory limits concurrency far below HTTP tools",
+      "Local baselines are not production capacity numbers",
+      "Artillery bundles its own Playwright version; keep engine and e2e suites intentional",
+    ],
+    usedInLab: true,
+  },
+  {
     id: "nextjs",
     categoryId: "this-lab",
     name: "Next.js",

@@ -25,9 +25,23 @@ Open [http://localhost:3000](http://localhost:3000) for the Home page. The Comma
 | `npm run typecheck` | TypeScript check |
 | `npm run test` | Vitest unit tests |
 | `npm run generate:stats` | Refresh live test counts written to `lib/data/lab-test-stats.generated.ts` |
+| `npm run test:perf` | Artillery Playwright browser load (requires `npm run start` on `:3000`) |
+| `npm run generate:artillery` | Ingest latest Artillery JSON into `lib/data/artillery-results.generated.ts` |
+| `npm run test:perf:update` | Run Artillery then regenerate `/artillery` page results |
 | `npm run test:e2e` | Playwright end-to-end tests (smoke + regression) |
 | `npm run test:e2e:smoke` | Smoke tests only |
 | `npm run test:e2e:regression` | Regression tests only |
+
+## Artillery performance tests
+
+Browser load lives under [`tests/performance/artillery/`](tests/performance/artillery/) and uses Artillery’s Playwright engine (real Chromium VUs + Web Vitals). Results on [`/artillery`](http://localhost:3000/artillery) come from a committed JSON report ingested into `lib/data/artillery-results.generated.ts` — not from calling Artillery at request time.
+
+```bash
+npm run build && npm run start   # terminal 1
+npm run test:perf:update         # terminal 2
+```
+
+This suite is **not** part of the default PR CI job (browser VUs are heavy). Functional Playwright e2e remains the every-PR browser gate.
 
 ## Project structure
 
@@ -38,6 +52,7 @@ content/articles/ MDX articles for "How I Solve Problems"
 lib/              Site config, articles loader, utilities
 tests/e2e/        Playwright POM framework (pages, fixtures, specs)
 tests/unit/       Vitest unit tests
+tests/performance/ Artillery Playwright browser load suite
 automation/       Framework Demo documentation (live tests in tests/e2e/)
 ```
 
@@ -55,6 +70,7 @@ automation/       Framework Demo documentation (live tests in tests/e2e/)
 | **8** | Metrics Dashboard, Interview Prep | Live |
 | **9** | Architecture Whiteboard, Exercises, Snippets | Live |
 | **10** | Framework Demo, AI in Testing | Live |
+| **11** | Artillery Performance Lab | Live |
 
 ## Adding a new feature
 

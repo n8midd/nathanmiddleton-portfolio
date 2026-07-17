@@ -101,6 +101,12 @@ test.describe("@smoke Quality Engineering Lab smoke tests", () => {
     await pipeline.expectStepDetail("Playwright");
   });
 
+  test("artillery page shows live performance KPIs", async ({ artillery }) => {
+    await artillery.open();
+    await artillery.openResultsTab();
+    await artillery.expectResultKpis();
+  });
+
   test("technical stack page shows Playwright rationale", async ({ stack }) => {
     await stack.open();
     await stack.clickTool("playwright");
